@@ -2,8 +2,8 @@ import TopNavbar from "@/src/components/TopNavbar";
 import { Colors } from "@/src/constants/color";
 import { useWallpapers } from "@/src/context/WallpapersContext";
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
-import { useEffect, useState } from "react";
+import { router, useLocalSearchParams } from "expo-router";
+import { useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Dimensions,
@@ -13,7 +13,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -36,39 +36,27 @@ const getCardSize = () => {
   return availableWidth / numColumns;
 };
 
-export default function Explore() {
+export default function CategoryDetail() {
+  const params = useLocalSearchParams();
+  const categoryNameParam = params.category as string;
+  // Decode category name in case it was URL encoded
+  const categoryName = categoryNameParam ? decodeURIComponent(categoryNameParam) : "";
   const [numColumns] = useState(getNumColumns());
   const [imageLoading, setImageLoading] = useState<{ [key: string]: boolean }>({});
   const insets = useSafeAreaInsets();
-  const { allWallpapers, isLoading, refreshAllWallpapers } = useWallpapers();
+  const { allWallpapers, isLoading } = useWallpapers();
   const cardSize = getCardSize();
-  const cardHeight = cardSize * 1.5; // Better aspect ratio
+  const cardHeight = cardSize * 1.5;
 
-  // Debug: Log wallpapers data
-  useEffect(() => {
-    console.log("Explore - allWallpapers length:", allWallpapers.length);
-    console.log("Explore - isLoading:", isLoading);
-    if (allWallpapers.length > 0) {
-      const firstWallpaper = allWallpapers[0] as any;
-      console.log("Explore - First wallpaper full:", JSON.stringify(firstWallpaper, null, 2));
-      console.log("Explore - First wallpaper keys:", Object.keys(firstWallpaper));
-      console.log("Explore - First wallpaper image field:", firstWallpaper.image);
-      console.log("Explore - First wallpaper imageUrl field:", firstWallpaper.imageUrl);
-      console.log("Explore - First wallpaper url field:", firstWallpaper.url);
-      
-      // Try to extract image URL
-      const testUrl = firstWallpaper.image?.url || 
-                     firstWallpaper.image?.secure_url ||
-                     firstWallpaper.imageUrl || 
-                     firstWallpaper.url;
-      console.log("Explore - Extracted image URL:", testUrl);
-    }
-  }, [allWallpapers, isLoading]);
-
-  // Refresh wallpapers when component mounts
-  useEffect(() => {
-    refreshAllWallpapers();
-  }, []);
+  // Filter wallpapers by category
+  const categoryWallpapers = useMemo(() => {
+    if (!categoryName) return [];
+    
+    return allWallpapers.filter((wallpaper: any) => {
+      const wallpaperCategory = wallpaper.category || "Uncategorized";
+      return wallpaperCategory === categoryName;
+    });
+  }, [allWallpapers, categoryName]);
 
   const handleImageLoadStart = (id: string) => {
     setImageLoading((prev) => ({ ...prev, [id]: true }));
@@ -81,24 +69,27 @@ export default function Explore() {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
-      
-      <TopNavbar title="Explore"
-      logoSource={{
+
+      <TopNavbar
+       title={categoryName || "Category"} 
+         logoSource={{
     uri: "https://res.cloudinary.com/dwemivxbp/image/upload/v1767461573/Gemini_Generated_Image_wlp3otwlp3otwlp3-removebg-preview_sviab7.png",
-  }}/>
-      
+  }}
+      />
+
       {/* Header Section */}
       <View style={styles.headerSection}>
         <View style={styles.headerContent}>
-          <Text style={styles.headerTitle}>Discover Wallpapers</Text>
+          <Text style={styles.headerTitle}>{categoryName || "Category"}</Text>
           <Text style={styles.headerSubtitle}>
-            {allWallpapers.length} {allWallpapers.length === 1 ? "wallpaper" : "wallpapers"} available
+            {categoryWallpapers.length}{" "}
+            {categoryWallpapers.length === 1 ? "wallpaper" : "wallpapers"} in this category
           </Text>
         </View>
       </View>
 
       {/* Loading State */}
-      {isLoading && allWallpapers.length === 0 ? (
+      {isLoading && categoryWallpapers.length === 0 ? (
         <View style={styles.loadingContainerFull}>
           <ActivityIndicator size="large" color={Colors.textPrimary} />
           <Text style={styles.loadingText}>Loading wallpapers...</Text>
@@ -106,7 +97,7 @@ export default function Explore() {
       ) : (
         /* Wallpaper Grid */
         <FlatList
-          data={allWallpapers}
+          data={categoryWallpapers}
           keyExtractor={(item) => item._id}
           numColumns={numColumns}
           key={numColumns}
@@ -118,7 +109,10 @@ export default function Explore() {
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
               <Ionicons name="images-outline" size={64} color={Colors.textSecondary} />
-              <Text style={styles.emptyText}>No wallpapers available</Text>
+              <Text style={styles.emptyText}>No wallpapers in this category</Text>
+              <Text style={styles.emptySubtext}>
+                Check back later for new wallpapers
+              </Text>
             </View>
           }
           renderItem={({ item }) => (
@@ -127,9 +121,11 @@ export default function Explore() {
               activeOpacity={0.85}
               onPress={() => {
                 const wallpaperItem = item as any;
-                const imageUrl = wallpaperItem.wallpaperImage?.url || 
-                                wallpaperItem.image?.url || 
-                                wallpaperItem.url || "";
+                const imageUrl =
+                  wallpaperItem.wallpaperImage?.url ||
+                  wallpaperItem.image?.url ||
+                  wallpaperItem.url ||
+                  "";
                 router.push({
                   pathname: "/wallpapers/[id]",
                   params: {
@@ -148,17 +144,20 @@ export default function Explore() {
                 {(() => {
                   // Handle different image structures
                   const wallpaperItem = item as any;
-                  
-                  // Try multiple possible image URL locations - wallpaperImage.url is the correct one
-                  const imageUrl = wallpaperItem.wallpaperImage?.url || 
-                                  wallpaperItem.image?.url || 
-                                  wallpaperItem.image?.secure_url ||
-                                  wallpaperItem.imageUrl || 
-                                  wallpaperItem.url || 
-                                  wallpaperItem.photo?.url ||
-                                  wallpaperItem.photoUrl ||
-                                  (typeof wallpaperItem.image === 'string' ? wallpaperItem.image : null);
-                  
+
+                  // Try multiple possible image URL locations
+                  const imageUrl =
+                    wallpaperItem.wallpaperImage?.url ||
+                    wallpaperItem.image?.url ||
+                    wallpaperItem.image?.secure_url ||
+                    wallpaperItem.imageUrl ||
+                    wallpaperItem.url ||
+                    wallpaperItem.photo?.url ||
+                    wallpaperItem.photoUrl ||
+                    (typeof wallpaperItem.image === "string"
+                      ? wallpaperItem.image
+                      : null);
+
                   if (imageUrl) {
                     return (
                       <Image
@@ -168,14 +167,25 @@ export default function Explore() {
                         onLoadStart={() => handleImageLoadStart(item._id)}
                         onLoadEnd={() => handleImageLoadEnd(item._id)}
                         onError={(error) => {
-                          console.error("Image load error for", item._id, "URL:", imageUrl, "Error:", error);
+                          console.error(
+                            "Image load error for",
+                            item._id,
+                            "URL:",
+                            imageUrl,
+                            "Error:",
+                            error
+                          );
                         }}
                       />
                     );
                   } else {
                     return (
                       <View style={styles.imagePlaceholder}>
-                        <Ionicons name="image-outline" size={32} color={Colors.textSecondary} />
+                        <Ionicons
+                          name="image-outline"
+                          size={32}
+                          color={Colors.textSecondary}
+                        />
                         <Text style={styles.placeholderText}>No Image</Text>
                       </View>
                     );
@@ -293,6 +303,13 @@ const styles = StyleSheet.create({
   emptyText: {
     marginTop: 16,
     fontSize: 16,
+    fontWeight: "600",
+    color: Colors.textPrimary,
+    textAlign: "center",
+  },
+  emptySubtext: {
+    marginTop: 8,
+    fontSize: 14,
     color: Colors.textSecondary,
     textAlign: "center",
   },
@@ -309,3 +326,4 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
   },
 });
+

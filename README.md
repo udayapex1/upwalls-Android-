@@ -22,7 +22,7 @@
     </a>
     &nbsp;&nbsp;
     <a href="#">
-      <img src="https://img.shields.io/badge/Get_it_on-Google_Play-green?style=for-the-badge&logo=google-play" alt="Get it on Google Play">
+      <img src="https://img.shields.io/badge/Download_APK-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download APK">
     </a>
   </p>
 </div>

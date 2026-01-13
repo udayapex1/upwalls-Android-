@@ -15,6 +15,16 @@
     <a href="#getting-started">Getting Started</a> •
     <a href="#contributing">Contributing</a>
   </p>
+
+  <p align="center">
+    <a href="#">
+      <img src="https://img.shields.io/badge/Download_on_the-App_Store-black?style=for-the-badge&logo=apple" alt="Download on the App Store">
+    </a>
+    &nbsp;&nbsp;
+    <a href="#">
+      <img src="https://img.shields.io/badge/Get_it_on-Google_Play-green?style=for-the-badge&logo=google-play" alt="Get it on Google Play">
+    </a>
+  </p>
 </div>
 
 ---

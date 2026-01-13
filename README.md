@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <video src="https://res.cloudinary.com/dwemivxbp/video/upload/Modern_App_Logo_Animation_Request_rtxull.mp4" width="100%" autoplay loop muted playsinline></video>
+  <video src="https://player.cloudinary.com/embed/?cloud_name=dwemivxbp&public_id=Modern_App_Logo_Animation_Request_rtxull" width="100%" autoplay loop muted playsinline></video>
   <h1>UpWalls</h1>
   <p><strong>The Next-Generation Wallpaper Experience for Modern Devices</strong></p>
 

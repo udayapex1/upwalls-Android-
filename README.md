@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <img src="./assets/images/upwallsLogo.png" alt="UpWalls Logo" width="120" height="auto" />
+  <img src="https://res.cloudinary.com/dwemivxbp/image/upload/v1767450687/Screenshot_from_2026-01-03_20-00-01_hbajx8.png" alt="UpWalls Logo" width="120" height="auto" />
   <h1>UpWalls</h1>
   <p><strong>The Next-Generation Wallpaper Experience for Modern Devices</strong></p>
 

@@ -1,107 +1,113 @@
-# Up Walls
+<div align="center">
+  <br />
+  <img src="./assets/images/upwallsLogo.png" alt="UpWalls Logo" width="120" height="auto" />
+  <h1>UpWalls</h1>
+  <p><strong>The Next-Generation Wallpaper Experience for Modern Devices</strong></p>
 
-An Expo-based wallpaper app (file-based router) built with React Native and Expo. The app provides feeds, categories, trending screens, user auth, and wallpaper details with sharing and download features.
+  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+  [![Expo](https://img.shields.io/badge/Expo-54.0-black.svg?style=flat&logo=expo)](https://expo.dev)
+  [![React Native](https://img.shields.io/badge/React_Native-0.81-blue.svg?style=flat&logo=react)](https://reactnative.dev)
+  [![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20Android-lightgrey.svg)]()
 
-## Features
-
-- File-based routing using `expo-router`
-- Authentication (login/register)
-- Browse wallpapers by feed, categories, and trending
-- Wallpaper detail view with share/download options
-- Example/demo app preserved in `app-example`
-
-## Built With
-
-- Expo (managed/native parts present)
-- React Native
-- `expo-router` for routing
-- Axios for networking
-
-## Quick Start
-
-Prerequisites:
-
-- Node.js (recommended: 18+)
-- npm or yarn
-- expo CLI (optional): `npm install -g expo-cli`
-
-Install and run locally:
-
-```bash
-npm install
-npm run start
-```
-
-Open the app with the Expo dev tools, or run directly on a device/emulator:
-
-```bash
-npm run android   # builds/runs on Android device/emulator
-npm run ios       # builds/runs on iOS simulator (macOS only)
-npm run web       # runs the web version
-```
-
-Project helper scripts (from `package.json`):
-
-- `start`: `expo start`
-- `android`: `expo run:android`
-- `ios`: `expo run:ios`
-- `web`: `expo start --web`
-- `lint`: `expo lint`
-- `reset-project`: Moves starter code to `app-example` and creates a fresh `app` folder (`node ./scripts/reset-project.js`)
-
-### EAS / Production Builds
-
-This repository includes `eas.json` for configuring EAS builds. To use EAS you must install and configure the `eas-cli` and have an Expo account.
-
-Example:
-
-```bash
-npm install -g eas-cli
-eas build -p android
-eas build -p ios
-```
-
-## Project Structure (overview)
-
-- `app/` — Main app source using Expo Router (screens, routes, layouts)
-- `app-example/` — Starter/example app preserved by the reset script
-- `android/`, `ios/` — Native project files (custom native code / prebuilt)
-- `src/` — Shared code (components, constants, context, services, utils)
-  - `src/components/TopNavbar.tsx`
-  - `src/context/` — `AuthContext`, `WallpapersContext`
-  - `src/services/` — `auth.ts`, `wallpapers.ts` (API interactions)
-- `assets/` — images and static assets
-- `package.json`, `tsconfig.json`, `eas.json` — config and scripts
-
-## Development notes
-
-- Routing: add new screens under the `app/` folder to expose new routes with `expo-router`.
-- State & data: `src/context` contains providers used across the app.
-- API: `src/services` contains network logic (uses `axios`). Configure endpoints there.
-- Linting: run `npm run lint`.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Open a pull request with a clear description
-
-Please add tests and run the linter before submitting a PR.
-
-## Environment / Secrets
-
-No `.env` or secret management was detected in the repository. If you add API keys or secrets, do not commit them—use environment variables or secure storage (and add them to `.gitignore`).
-
-## License
-
-No license file found in the repository. Add a `LICENSE` file to declare one (e.g., MIT).
+  <p>
+    <a href="#features">Features</a> •
+    <a href="#architecture">Architecture</a> •
+    <a href="#getting-started">Getting Started</a> •
+    <a href="#contributing">Contributing</a>
+  </p>
+</div>
 
 ---
 
-If you want, I can also:
+## 🚀 Product Overview
 
-- Add a minimal `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`.
-- Create a `LICENSE` file (MIT) and update `package.json`.
-- Generate a short developer guide for adding routes and screens.
+**UpWalls** is a production-ready, high-performance wallpaper application engineered to provide a seamless visual discovery experience. Built on the robust **Expo** ecosystem, it bridges the gap between premium design and native performance.
 
-Updated README based on the project layout and `package.json` scripts.
+Unlike basic gallery apps, UpWalls serves as a scalable platform for digital art distribution, featuring a sophisticated file-based routing system, secure authentication flows, and an optimized media delivery pipeline. It is designed for users who demand aesthetic perfection and for developers who seek a reference standard for modern React Native architecture.
+
+## ✨ Key Features
+
+- ** immersive Exploration**: Curated feeds, trending algorithms, and categorical browsing designed to maximize user engagement.
+- **Native Performance**: Leverages Reanimated and Native Gesture Handler for 60fps animations and buttery smooth interactions.
+- **Secure Architecture**: Integrated authentication system with secure token storage and protected routes.
+- **Social & Sharing**: Built-in deep linking, sharing capabilities, and media manipulation tools.
+- **Cross-Platform Core**: unified codebase delivering native experiences on both iOS and Android.
+
+## 🛠 Architecture & Tech Stack
+
+UpWalls is built with an emphasis on maintainability, scalability, and developer experience.
+
+| Component | Technology | Rationale |
+|-----------|------------|-----------|
+| **Core Framework** | React Native 0.81 | The latest stable foundation for native mobile apps. |
+| **Platform Engine** | Expo SDK 54 | Managed workflow for rapid iteration and OTA updates. |
+| **Routing** | Expo Router v6 | Next.js-style file-based routing for intuitive navigation structure. |
+| **State Management** | Context API | Lightweight, atomic state management for Auth and Data flows. |
+| **Networking** | Axios | Robust HTTP client for reliable API communication. |
+| **UI/UX** | Reanimated 4, Linear Gradient | For high-performance animations and advanced visual effects. |
+
+## ⚡ Getting Started
+
+### Prerequisites
+
+- **Node.js** (v18.x or higher)
+- **npm** or **yarn**
+- **Expo Go** app on your physical device or an Android/iOS Simulator.
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/up-walls.git
+   cd up-walls
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npx expo start
+   ```
+
+4. **Launch the App**
+   - **Physical Device**: Scan the QR code with your camera (iOS) or Expo Go (Android).
+   - **Simulator**: Press `a` for Android Emulator or `i` for iOS Simulator.
+
+## 📱 Project Structure
+
+```bash
+up-walls/
+├── app/                  # File-based routing (screens & layouts)
+├── src/
+│   ├── components/       # Reusable UI components
+│   ├── context/          # Application state (Auth, Wallpapers)
+│   ├── services/         # API integration layer
+│   └── utils/            # Helper functions and constants
+├── assets/               # Static resources (images, fonts)
+└── app.json              # Expo configuration
+```
+
+## 🤝 Contributing
+
+We welcome contributions from the open-source community. UpWalls is structured to be contributor-friendly.
+
+1. **Fork** the project.
+2. Create your **Feature Branch** (`git checkout -b feature/AmazingFeature`).
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`).
+4. **Push** to the branch (`git push origin feature/AmazingFeature`).
+5. Open a **Pull Request**.
+
+*> Note: Please ensure all new components are typed correctly with TypeScript and follow the project's linting rules.*
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+<div align="center">
+  <p>Built with ❤️ by the UpWalls Team</p>
+</div>

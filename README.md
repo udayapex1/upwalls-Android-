@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <img src="https://res.cloudinary.com/dwemivxbp/image/upload/v1767450687/Screenshot_from_2026-01-03_20-00-01_hbajx8.png" alt="UpWalls Banner" width="100%" />
+  <video src="https://res.cloudinary.com/dwemivxbp/video/upload/Modern_App_Logo_Animation_Request_rtxull.mp4" width="100%" autoplay loop muted playsinline></video>
   <h1>UpWalls</h1>
   <p><strong>The Next-Generation Wallpaper Experience for Modern Devices</strong></p>
 
@@ -21,7 +21,7 @@
       <img src="https://img.shields.io/badge/Download_on_the-App_Store-black?style=for-the-badge&logo=apple" alt="Download on the App Store">
     </a>
     &nbsp;&nbsp;
-    <a href="https://github.com/udayapex1/upwalls-Android-/releases/download/v1.0.0/UpWalls-v1.0.0.apk">
+    <a href="#">
       <img src="https://img.shields.io/badge/Download_APK-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download APK">
     </a>
   </p>

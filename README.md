@@ -21,7 +21,8 @@
       <img src="https://img.shields.io/badge/Download_on_the-App_Store-black?style=for-the-badge&logo=apple" alt="Download on the App Store">
     </a>
     &nbsp;&nbsp;
-    <a href="#">
+
+    <a href="https://github.com/udayapex1/upwalls-Android-/releases/download/v1.0.0/UpWalls-v1.0.0.apk">
       <img src="https://img.shields.io/badge/Download_APK-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download APK">
     </a>
   </p>

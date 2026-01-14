@@ -1,24 +1,24 @@
+import { Colors } from "@/src/constants/color";
+import { useAuth } from "@/src/context/AuthContext";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import { useEffect } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
+  Image,
   Platform,
   StatusBar,
-  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { useEffect } from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/src/constants/color";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { router } from "expo-router";
-import { useAuth } from "@/src/context/AuthContext";
 
 type TopNavbarProps = {
   title: string;
   subtitle?: string;
   showLogo?: boolean;
-  logoSource?: "https://res.cloudinary.com/dwemivxbp/image/upload/v1767461573/Gemini_Generated_Image_wlp3otwlp3otwlp3-removebg-preview_sviab7.png";
+  logoSource?: any;
 };
 
 export default function TopNavbar({

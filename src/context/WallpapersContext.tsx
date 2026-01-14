@@ -1,5 +1,5 @@
+import { getAllWallpapers, getUserWallpapers, getWallpaperById, Wallpaper } from "@/src/services/wallpapers";
 import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { getUserWallpapers, getAllWallpapers, getWallpaperById, Wallpaper } from "@/src/services/wallpapers";
 import { useAuth } from "./AuthContext";
 
 interface WallpapersContextType {

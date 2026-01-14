@@ -24,24 +24,30 @@ export type Wallpaper = {
 
 // Get user's uploaded wallpapers
 export const getUserWallpapers = async (): Promise<Wallpaper[]> => {
+  console.log("Fetching user wallpapers...");
   try {
     const token = await SecureStore.getItemAsync("token");
-    
+
     if (!token) {
       console.log("No token found for fetching user wallpapers");
       return [];
     }
 
     console.log("Fetching user wallpapers...");
-    
-    const { data } = await axios.get(`${BACKEND_URL}/api/wallpapers/my-uploads`, {
+    console.log("Token:", token);
+
+    const { data } = await axios.get(`${BACKEND_URL}/api/wallpaper/myPost`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log("----------");
+    console.log("test response:", data);
+    console.log("----------");
+
 
     console.log("User wallpapers API response:", JSON.stringify(data, null, 2));
-    
+
     // Handle both array response and nested response
     if (Array.isArray(data)) {
       return data;
@@ -65,16 +71,16 @@ export const getUserWallpapers = async (): Promise<Wallpaper[]> => {
 // Get all wallpapers (for explore page)
 export const getAllWallpapers = async (): Promise<Wallpaper[]> => {
   try {
-    console.log("Fetching all wallpapers from:", `${BACKEND_URL}/api/wallpaper/getAllPosts`);
-    
+    // console.log("Fetching all wallpapers from:", `${BACKEND_URL}/api/wallpaper/getAllPosts`);
+
     const { data } = await axios.get(`${BACKEND_URL}/api/wallpaper/getAllPosts`);
 
-    console.log("All wallpapers API response type:", typeof data);
-    console.log("All wallpapers API response:", JSON.stringify(data, null, 2));
-    
+    // console.log("All wallpapers API response type:", typeof data);
+    // console.log("All wallpapers API response:", JSON.stringify(data, null, 2));
+
     // Handle different response structures
     let wallpapers: any[] = [];
-    
+
     if (Array.isArray(data)) {
       wallpapers = data;
       console.log("Response is direct array, length:", wallpapers.length);
@@ -135,7 +141,7 @@ export const getWallpaperById = async (id: string): Promise<Wallpaper | null> =>
       const { data } = await axios.get(endpoint);
 
       console.log("Wallpaper by ID API response:", JSON.stringify(data, null, 2));
-      
+
       // Handle different response structures
       if (data && typeof data === 'object') {
         // Try various nested structures
@@ -154,7 +160,7 @@ export const getWallpaperById = async (id: string): Promise<Wallpaper | null> =>
           return data;
         }
       }
-      
+
       console.log("No wallpaper found in response structure");
     } catch (error: any) {
       console.log(`Endpoint ${endpoint} failed:`, {
@@ -166,7 +172,7 @@ export const getWallpaperById = async (id: string): Promise<Wallpaper | null> =>
       continue;
     }
   }
-  
+
   console.error("All endpoints failed for wallpaper ID:", id);
   return null;
 };

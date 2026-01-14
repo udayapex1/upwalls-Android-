@@ -1,19 +1,21 @@
+import TopNavbar from "@/src/components/TopNavbar";
+import { Colors } from "@/src/constants/color";
+import { useAuth } from "@/src/context/AuthContext";
+import { useWallpapers } from "@/src/context/WallpapersContext";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import { useEffect } from "react";
+
 import {
-  View,
-  Text,
   Image,
-  StyleSheet,
-  TouchableOpacity,
   ScrollView,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { useEffect } from "react";
-import { useAuth } from "@/src/context/AuthContext";
-import { router } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/src/constants/color";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import TopNavbar from "@/src/components/TopNavbar";
 
 type UserData = {
   _id: string;
@@ -28,94 +30,210 @@ type UserData = {
 export default function Profile() {
   const { user, logout } = useAuth();
   const insets = useSafeAreaInsets();
+  const { userWallpapers, isLoading, refreshUserWallpapers } = useWallpapers();
 
-useEffect(() => {
-  // If no user in auth context, redirect to login
-  if (!user) {
-    router.replace("/(auth)/login");
-  }
-}, [user]);
-
-
-    const handleLogout = async () => {
-      try {
-        await logout();
-      } catch (err) {
-        console.error("Logout failed:", err);
-      }
+  useEffect(() => {
+    if (!user) {
       router.replace("/(auth)/login");
-    };
+    }
+  }, [user]);
 
-    const handleAboutPress = () => {
-      router.push("/about");
-    };
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+    router.replace("/(auth)/login");
+  };
+
+  const handleAboutPress = () => {
+    router.push("/about");
+  };
 
   const handleEditProfile = () => {
     console.log("Edit profile");
   };
-  console.log( "this is user :",user)
+
+  console.log("this is user :", user);
 
   if (!user) return null;
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
-      
-      <TopNavbar title="Profile" onProfilePress={() => {}} 
-          logoSource={{
-    uri: "https://res.cloudinary.com/dwemivxbp/image/upload/v1767461573/Gemini_Generated_Image_wlp3otwlp3otwlp3-removebg-preview_sviab7.png",
-  }}
-        />
 
-      <ScrollView 
+      <TopNavbar
+        title="Profile"
+        logoSource={{
+          uri: "https://res.cloudinary.com/dwemivxbp/image/upload/v1767461573/Gemini_Generated_Image_wlp3otwlp3otwlp3-removebg-preview_sviab7.png",
+        }}
+      />
+
+      <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 100 }]}
+        contentContainerStyle={[
+          styles.content,
+          { paddingBottom: insets.bottom + 100 },
+        ]}
         showsVerticalScrollIndicator={false}
       >
-        {/* Profile Header */}
-        <View style={styles.profileHeader}>
-          <View style={styles.avatarContainer}>
-            <Image
-              source={{ uri: user.profile?.url }}
-              style={styles.avatar}
-            />
-            <TouchableOpacity style={styles.editAvatarButton} activeOpacity={0.7}>
-              <Ionicons name="camera" size={18} color={Colors.textPrimary} />
-            </TouchableOpacity>
+        {/* Profile Info Section */}
+        <View style={styles.profileSection}>
+          {/* Avatar and Stats Row */}
+          <View style={styles.topRow}>
+            {/* Avatar */}
+            <View style={styles.avatarWrapper}>
+              <View style={styles.avatarContainer}>
+                <Image source={{ uri: user.profile?.url }} style={styles.avatar} />
+              </View>
+            </View>
+
+            {/* Stats */}
+            <View style={styles.statsRow}>
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>{userWallpapers.length}</Text>
+                <Text style={styles.statLabel}>Posts</Text>
+              </View>
+            
+            </View>
           </View>
 
-          <Text style={styles.username}>@{user.userName}</Text>
-          <Text style={styles.email}>{user.email}</Text>
+          {/* Bio Section */}
+          <View style={styles.bioSection}>
+            <Text style={styles.displayName}>{user.userName}</Text>
+            <Text>showing profile url for debugging</Text>
+            <Text>{user.profile?.url}</Text>
+            <Text style={styles.bio}>
+              Wallpaper enthusiast 🎨{"\n"}
+              Curating beautiful backgrounds{"\n"}
+              ✨ {user.email}
+            </Text>
+          </View>
+         {/* commented due to not required at this time  */}
+          {/* Action Buttons */}
+          {/* <View style={styles.actionButtons}>
+            <TouchableOpacity
+              style={styles.editProfileButton}
+              onPress={handleEditProfile}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.editProfileText}>Edit profile</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.shareProfileButton}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.shareProfileText}>Share profile</Text>
+            </TouchableOpacity>
+          
+          </View> */}
+        </View>
+
+    
+
+        {/* Tab Bar */}
+        {/* <View style={styles.tabBar}>
+          <TouchableOpacity style={styles.tabItem}>
+            <Ionicons name="grid-outline" size={24} color={Colors.textPrimary} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tabItem}>
+            <Ionicons name="heart-outline" size={24} color={Colors.textSecondary} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tabItem}>
+            <Ionicons name="bookmark-outline" size={24} color={Colors.textSecondary} />
+          </TouchableOpacity>
+        </View> */}
+
+        {/* Grid Placeholder */}
+        {/* <View style={styles.gridContainer}>
+          <View style={styles.gridRow}>
+            <View style={styles.gridItem}>
+              <Ionicons name="image-outline" size={48} color={Colors.textSecondary} />
+            </View>
+            <View style={styles.gridItem}>
+              <Ionicons name="image-outline" size={48} color={Colors.textSecondary} />
+            </View>
+            <View style={styles.gridItem}>
+              <Ionicons name="image-outline" size={48} color={Colors.textSecondary} />
+            </View>
+          </View>
+        </View> */}
+
+        {/* Settings Menu */}
+        <View style={styles.menuSection}>
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => router.push("/myUploads")}
+            activeOpacity={0.6}
+          >
+            <View style={styles.menuItemLeft}>
+              <Ionicons name="images-outline" size={22} color={Colors.textPrimary} />
+              <Text style={styles.menuItemText}>My Uploads | {userWallpapers.length}</Text> 
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+          </TouchableOpacity>
+
+          {/* <TouchableOpacity style={styles.menuItem} activeOpacity={0.6}>
+            <View style={styles.menuItemLeft}>
+              <Ionicons name="settings-outline" size={22} color={Colors.textPrimary} />
+              <Text style={styles.menuItemText}>Settings</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+          </TouchableOpacity> */}
+
+          {/* <TouchableOpacity style={styles.menuItem} activeOpacity={0.6}>
+            <View style={styles.menuItemLeft}>
+              <Ionicons name="time-outline" size={22} color={Colors.textPrimary} />
+              <Text style={styles.menuItemText}>Your activity</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+          </TouchableOpacity> */}
+
+          {/* <TouchableOpacity style={styles.menuItem} activeOpacity={0.6}>
+            <View style={styles.menuItemLeft}>
+              <Ionicons name="bookmark-outline" size={22} color={Colors.textPrimary} />
+              <Text style={styles.menuItemText}>Saved</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+          </TouchableOpacity> */}
+
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => router.push("/policy")}
+            activeOpacity={0.6}
+          >
+            <View style={styles.menuItemLeft}>
+              <Ionicons name="shield-checkmark-outline" size={22} color={Colors.textPrimary} />
+              <Text style={styles.menuItemText}>Privacy Policy</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => router.push("/report")}
+            activeOpacity={0.6}
+          >
+            <View style={styles.menuItemLeft}>
+              <Ionicons name="warning-outline" size={22} color={Colors.textPrimary} />
+              <Text style={styles.menuItemText}>Report Issue</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+          </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.editButton}
-            onPress={handleEditProfile}
-            activeOpacity={0.7}
+            style={styles.menuItem}
+            onPress={handleAboutPress}
+            activeOpacity={0.6}
           >
-            <Ionicons name="create-outline" size={18} color={Colors.textPrimary} />
-            <Text style={styles.editButtonText}>Edit Profile</Text>
+            <View style={styles.menuItemLeft}>
+              <Ionicons name="information-circle-outline" size={22} color={Colors.textPrimary} />
+              <Text style={styles.menuItemText}>About Us</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
-
-        {/* Stats Section */}
-        <View style={styles.statsContainer}>
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>24</Text>
-            <Text style={styles.statLabel}>Downloads</Text>
-          </View>
-          <View style={styles.statDivider} />
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>12</Text>
-            <Text style={styles.statLabel}>Favorites</Text>
-          </View>
-          <View style={styles.statDivider} />
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>8</Text>
-            <Text style={styles.statLabel}>Collections</Text>
-          </View>
-        </View>
-
-  
 
         {/* Logout Button */}
         <TouchableOpacity
@@ -124,50 +242,12 @@ useEffect(() => {
           activeOpacity={0.7}
         >
           <Ionicons name="log-out-outline" size={20} color="#ef4444" />
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
-
-        {/* About Us Button */}
-        <TouchableOpacity
-          style={styles.aboutButton}
-          onPress={handleAboutPress}
-          activeOpacity={0.7}
-        >
-          <Ionicons name="information-circle-outline" size={20} color={Colors.textPrimary} />
-          <Text style={styles.aboutText}>About Us</Text>
+          <Text style={styles.logoutText}>Log out</Text>
         </TouchableOpacity>
 
         <Text style={styles.version}>Version 1.0.0</Text>
       </ScrollView>
     </View>
-  );
-}
-
-function MenuItem({
-  icon,
-  label,
-  onPress,
-  showArrow = true,
-}: {
-  icon: any;
-  label: string;
-  onPress: () => void;
-  showArrow?: boolean;
-}) {
-  return (
-    <TouchableOpacity
-      style={styles.menuItem}
-      onPress={onPress}
-      activeOpacity={0.6}
-    >
-      <View style={styles.menuItemLeft}>
-        <Ionicons name={icon} size={22} color={Colors.textPrimary} />
-        <Text style={styles.menuItemText}>{label}</Text>
-      </View>
-      {showArrow && (
-        <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
-      )}
-    </TouchableOpacity>
   );
 }
 
@@ -180,121 +260,178 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    paddingTop: 24,
+    paddingTop: 0,
   },
-  profileHeader: {
+  profileSection: {
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
+  topRow: {
+    flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 24,
-    marginBottom: 32,
+    marginBottom: 12,
+  },
+  avatarWrapper: {
+    marginRight: 28,
   },
   avatarContainer: {
-    position: "relative",
-    marginBottom: 16,
-  },
-  avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: Colors.surface,
-    borderWidth: 3,
+    width: 86,
+    height: 86,
+    borderRadius: 43,
+    padding: 2,
+    borderWidth: 2,
     borderColor: Colors.border,
   },
-  editAvatarButton: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: Colors.background,
-    borderWidth: 2,
+  avatar: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: Colors.surface,
+  },
+  statsRow: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  statItem: {
+    alignItems: "flex-start",
+  },
+  statValue: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: Colors.textPrimary,
+  },
+  statLabel: {
+    fontSize: 13,
+    fontWeight: "400",
+    color: Colors.textPrimary,
+    marginTop: 2,
+  },
+  bioSection: {
+    marginBottom: 16,
+  },
+  displayName: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: Colors.textPrimary,
+    marginBottom: 4,
+  },
+  bio: {
+    fontSize: 13,
+    fontWeight: "400",
+    color: Colors.textPrimary,
+    lineHeight: 18,
+  },
+  actionButtons: {
+    flexDirection: "row",
+    gap: 6,
+  },
+  editProfileButton: {
+    flex: 1,
+    paddingVertical: 7,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    backgroundColor: Colors.surface,
+    borderWidth: 1,
     borderColor: Colors.border,
     alignItems: "center",
     justifyContent: "center",
   },
-  username: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: Colors.textPrimary,
-    marginBottom: 4,
-  },
-  email: {
-    fontSize: 14,
-    fontWeight: "400",
-    color: Colors.textSecondary,
-    marginBottom: 16,
-  },
-  editButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 12,
-    borderWidth: 1.5,
-    borderColor: Colors.textPrimary,
-  },
-  editButtonText: {
+  editProfileText: {
     fontSize: 14,
     fontWeight: "600",
     color: Colors.textPrimary,
   },
-  statsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginHorizontal: 24,
-    marginBottom: 32,
-    paddingVertical: 20,
+  shareProfileButton: {
+    flex: 1,
+    paddingVertical: 7,
     paddingHorizontal: 16,
+    borderRadius: 8,
     backgroundColor: Colors.surface,
-    borderRadius: 16,
     borderWidth: 1,
     borderColor: Colors.border,
-  },
-  statItem: {
-    flex: 1,
     alignItems: "center",
+    justifyContent: "center",
   },
-  statValue: {
-    fontSize: 20,
-    fontWeight: "700",
+  shareProfileText: {
+    fontSize: 14,
+    fontWeight: "600",
     color: Colors.textPrimary,
-    marginBottom: 4,
   },
-  statLabel: {
+  iconButton: {
+    paddingVertical: 7,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    backgroundColor: Colors.surface,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  highlightsSection: {
+    paddingVertical: 12,
+    paddingLeft: 16,
+    borderBottomWidth: 0.5,
+    borderBottomColor: Colors.border,
+  },
+  highlightItem: {
+    alignItems: "center",
+    marginRight: 16,
+  },
+  highlightCircle: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: Colors.surface,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 6,
+  },
+  highlightLabel: {
     fontSize: 12,
     fontWeight: "400",
-    color: Colors.textSecondary,
+    color: Colors.textPrimary,
   },
-  statDivider: {
-    width: 1,
-    height: 32,
-    backgroundColor: Colors.border,
+  tabBar: {
+    flexDirection: "row",
+    borderBottomWidth: 0.5,
+    borderBottomColor: Colors.border,
+  },
+  tabItem: {
+    flex: 1,
+    paddingVertical: 12,
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "transparent",
+  },
+  gridContainer: {
+    paddingTop: 1,
+  },
+  gridRow: {
+    flexDirection: "row",
+  },
+  gridItem: {
+    flex: 1,
+    aspectRatio: 1,
+    backgroundColor: Colors.surface,
+    borderWidth: 0.5,
+    borderColor: Colors.border,
+    alignItems: "center",
+    justifyContent: "center",
   },
   menuSection: {
-    marginBottom: 24,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 11,
-    fontWeight: "700",
-    color: Colors.textSecondary,
-    letterSpacing: 1,
-    marginBottom: 12,
-    marginLeft: 4,
+    marginTop: 24,
+    paddingHorizontal: 16,
   },
   menuItem: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-    backgroundColor: Colors.surface,
-    borderRadius: 12,
-    marginBottom: 8,
-    borderWidth: 1,
-    borderColor: Colors.border,
+    paddingVertical: 12,
+    borderBottomWidth: 0.5,
+    borderBottomColor: Colors.border,
   },
   menuItemLeft: {
     flexDirection: "row",
@@ -303,7 +440,7 @@ const styles = StyleSheet.create({
   },
   menuItemText: {
     fontSize: 15,
-    fontWeight: "500",
+    fontWeight: "400",
     color: Colors.textPrimary,
   },
   logoutButton: {
@@ -311,38 +448,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 8,
-    marginHorizontal: 24,
-    marginTop: 8,
+    marginHorizontal: 16,
+    marginTop: 24,
     marginBottom: 16,
-    paddingVertical: 16,
-    borderRadius: 12,
+    paddingVertical: 12,
+    borderRadius: 8,
     backgroundColor: Colors.surface,
-    borderWidth: 1.5,
+    borderWidth: 1,
     borderColor: "#ef4444",
   },
   logoutText: {
     fontSize: 15,
     fontWeight: "600",
     color: "#ef4444",
-  },
-  aboutButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-    marginHorizontal: 24,
-    marginTop: 8,
-    marginBottom: 16,
-    paddingVertical: 16,
-    borderRadius: 12,
-    backgroundColor: Colors.surface,
-    borderWidth: 1.5,
-    borderColor: Colors.border,
-  },
-  aboutText: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: Colors.textPrimary,
   },
   version: {
     fontSize: 12,

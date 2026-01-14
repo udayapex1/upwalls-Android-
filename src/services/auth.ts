@@ -18,7 +18,7 @@ export const loginUser = async (
         },
       }
     );
-        
+
     console.log(data)
     // 🔐 store token securely
     await SecureStore.setItemAsync("token", data.token);
@@ -48,7 +48,7 @@ export const registerUser = async (
     }
 
     let formData = new FormData();
-    
+
     formData.append("email", email);
     formData.append("password", password);
     formData.append("userName", userName);
@@ -64,23 +64,23 @@ export const registerUser = async (
     if (fileUri.startsWith("file://")) {
       // Keep it for React Native FormData
     }
-    
+
     const fileObject: any = {
       uri: fileUri,
       type: mimeType,
       name: filename,
     };
-    
+
     // Backend expects field name "profile" (not "photo")
     formData.append("profile", fileObject);
-    
+
     // Debug: Log FormData contents (be careful not to log sensitive data)
-    console.log("Preparing registration request:", { 
+    console.log("Preparing registration request:", {
       email,
       userName,
       hasPhoto: !!profilePhoto,
       fieldName: "profile",
-      filename, 
+      filename,
       mimeType,
       uriLength: fileUri.length,
       uriStart: fileUri.substring(0, 30),
@@ -88,7 +88,7 @@ export const registerUser = async (
 
     // Use fetch instead of axios for better FormData handling in React Native
     console.log("Sending registration request to:", `${BACKEND_URL}/api/users/register`);
-    
+
     const response = await fetch(`${BACKEND_URL}/api/users/register`, {
       method: "POST",
       body: formData,
@@ -116,7 +116,7 @@ export const registerUser = async (
       name: error.name,
       stack: error.stack,
     });
-    
+
     // Provide more specific error messages
     let errorMessage = "Registration failed";
     if (error.message?.includes("Network") || error.message?.includes("fetch")) {
@@ -124,7 +124,7 @@ export const registerUser = async (
     } else if (error.message) {
       errorMessage = error.message;
     }
-    
+
     return {
       success: false,
       error: errorMessage,
@@ -136,7 +136,7 @@ export const getStoredAuth = async () => {
   try {
     const token = await SecureStore.getItemAsync("token");
     const userStr = await SecureStore.getItemAsync("user");
-    
+
     if (!token || !userStr) {
       return null;
     }
@@ -159,7 +159,7 @@ export const getUserProfile = async (token: string) => {
     }
 
     console.log("Fetching user profile with token:", token.substring(0, 20) + "...");
-    
+
     const { data } = await axios.get(`${BACKEND_URL}/api/users/myProfile`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -167,7 +167,7 @@ export const getUserProfile = async (token: string) => {
     });
 
     console.log("User profile API response:", JSON.stringify(data, null, 2));
-    
+
     // Update stored user data with fresh profile data
     // Handle both direct user object or nested user object
     const userData = data?.user || data;

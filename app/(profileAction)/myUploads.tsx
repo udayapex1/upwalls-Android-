@@ -3,31 +3,21 @@ import { Colors } from "@/src/constants/color";
 import { useWallpapers } from "@/src/context/WallpapersContext";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  ActivityIndicator,
-  Dimensions,
-  FlatList,
-  Image,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    ActivityIndicator,
+    Dimensions,
+    FlatList,
+    Image,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-
-// Shuffle function using Fisher-Yates algorithm
-const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
 
 // Responsive column calculation
 const getNumColumns = () => {
@@ -46,42 +36,17 @@ const getCardSize = () => {
   return availableWidth / numColumns;
 };
 
-export default function Explore() {
+export default function MyUploads() {
   const [numColumns] = useState(getNumColumns());
   const [imageLoading, setImageLoading] = useState<{ [key: string]: boolean }>({});
   const insets = useSafeAreaInsets();
-  const { allWallpapers, isLoading, refreshAllWallpapers } = useWallpapers();
+  const { userWallpapers, isLoading, refreshUserWallpapers } = useWallpapers();
   const cardSize = getCardSize();
   const cardHeight = cardSize * 1.5;
 
-  // Randomize wallpapers on every render using useMemo to prevent unnecessary re-shuffles
-  const randomizedWallpapers = useMemo(() => {
-    return shuffleArray(allWallpapers);
-  }, [allWallpapers]);
-
-  // Debug: Log wallpapers data
+  // Refresh user wallpapers when component mounts
   useEffect(() => {
-    console.log("Explore - allWallpapers length:", allWallpapers.length);
-    console.log("Explore - isLoading:", isLoading);
-    if (allWallpapers.length > 0) {
-      const firstWallpaper = allWallpapers[0] as any;
-      console.log("Explore - First wallpaper full:", JSON.stringify(firstWallpaper, null, 2));
-      console.log("Explore - First wallpaper keys:", Object.keys(firstWallpaper));
-      console.log("Explore - First wallpaper image field:", firstWallpaper.image);
-      console.log("Explore - First wallpaper imageUrl field:", firstWallpaper.imageUrl);
-      console.log("Explore - First wallpaper url field:", firstWallpaper.url);
-      
-      const testUrl = firstWallpaper.image?.url || 
-                     firstWallpaper.image?.secure_url ||
-                     firstWallpaper.imageUrl || 
-                     firstWallpaper.url;
-      console.log("Explore - Extracted image URL:", testUrl);
-    }
-  }, [allWallpapers, isLoading]);
-
-  // Refresh wallpapers when component mounts
-  useEffect(() => {
-    refreshAllWallpapers();
+    refreshUserWallpapers();
   }, []);
 
   const handleImageLoadStart = (id: string) => {
@@ -91,41 +56,38 @@ export default function Explore() {
   const handleImageLoadEnd = (id: string) => {
     setImageLoading((prev) => ({ ...prev, [id]: false }));
   };
- 
-  const getDisplayCount = (count) => {
-  if (count < 10) return `${count}`;
-  return `${Math.floor(count / 50) * 50}+`;
-};
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
-      
-      <TopNavbar title="Explore"
-      logoSource={{
-    uri: "https://res.cloudinary.com/dwemivxbp/image/upload/v1767461573/Gemini_Generated_Image_wlp3otwlp3otwlp3-removebg-preview_sviab7.png",
-  }}/>
-      
+
+      <TopNavbar
+        title="My Uploads"
+        logoSource={{
+          uri: "https://res.cloudinary.com/dwemivxbp/image/upload/v1767461573/Gemini_Generated_Image_wlp3otwlp3otwlp3-removebg-preview_sviab7.png",
+        }}
+      />
+
       {/* Header Section */}
       <View style={styles.headerSection}>
         <View style={styles.headerContent}>
-          <Text style={styles.headerTitle}>Discover Wallpapers</Text>
+          <Text style={styles.headerTitle}>Your Collection</Text>
           <Text style={styles.headerSubtitle}>
-          {getDisplayCount(allWallpapers.length)} {allWallpapers.length === 1 ? "wallpaper" : "wallpapers"} available
+            {userWallpapers.length} {userWallpapers.length === 1 ? "wallpaper" : "wallpapers"} shared
           </Text>
         </View>
       </View>
 
       {/* Loading State */}
-      {isLoading && allWallpapers.length === 0 ? (
+      {isLoading && userWallpapers.length === 0 ? (
         <View style={styles.loadingContainerFull}>
           <ActivityIndicator size="large" color={Colors.textPrimary} />
-          <Text style={styles.loadingText}>Loading wallpapers...</Text>
+          <Text style={styles.loadingText}>Loading your uploads...</Text>
         </View>
       ) : (
         /* Wallpaper Grid */
         <FlatList
-          data={randomizedWallpapers}
+          data={userWallpapers}
           keyExtractor={(item) => item._id}
           numColumns={numColumns}
           key={numColumns}
@@ -136,8 +98,14 @@ export default function Explore() {
           ]}
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
-              <Ionicons name="images-outline" size={64} color={Colors.textSecondary} />
-              <Text style={styles.emptyText}>No wallpapers available</Text>
+              <Ionicons name="cloud-upload-outline" size={64} color={Colors.textSecondary} />
+              <Text style={styles.emptyText}>You haven't uploaded any wallpapers yet</Text>
+              <TouchableOpacity 
+                style={styles.uploadButton}
+                onPress={() => router.push("/(tabs)/upload")}
+              >
+                <Text style={styles.uploadButtonText}>Upload Now</Text>
+              </TouchableOpacity>
             </View>
           }
           renderItem={({ item }) => (
@@ -201,9 +169,6 @@ export default function Explore() {
                 <View style={styles.overlay}>
                   <View style={styles.overlayGradient} />
                 </View>
-                <View style={styles.cardBadge}>
-                  <Ionicons name="image-outline" size={14} color="#fff" />
-                </View>
               </View>
             </TouchableOpacity>
           )}
@@ -245,14 +210,14 @@ const styles = StyleSheet.create({
   },
   card: {
     margin: 5,
-    borderRadius: 18,
+    borderRadius: 12,
     overflow: "hidden",
     backgroundColor: Colors.surface,
     elevation: 3,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.12,
-    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
   imageContainer: {
     width: "100%",
@@ -278,16 +243,6 @@ const styles = StyleSheet.create({
   overlayGradient: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.02)",
-    borderBottomLeftRadius: 18,
-    borderBottomRightRadius: 18,
-  },
-  cardBadge: {
-    position: "absolute",
-    top: 8,
-    right: 8,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    borderRadius: 12,
-    padding: 6,
   },
   loadingContainerFull: {
     flex: 1,
@@ -312,6 +267,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.textSecondary,
     textAlign: "center",
+    marginBottom: 24,
+  },
+  uploadButton: {
+    backgroundColor: Colors.background,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  uploadButtonText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: Colors.textPrimary,
   },
   imagePlaceholder: {
     width: "100%",

@@ -56,6 +56,8 @@ export default function Profile() {
   };
 
   console.log("this is user :", user);
+  const userProfile = user?.profile as { url: string } | undefined;
+  const safeProfileUrl = userProfile?.url.replace(/^(http:\/\/|https:\/\/)/, 'https://');
 
   if (!user) return null;
 
@@ -85,7 +87,7 @@ export default function Profile() {
             {/* Avatar */}
             <View style={styles.avatarWrapper}>
               <View style={styles.avatarContainer}>
-                <Image source={{ uri: user.profile?.url }} style={styles.avatar} />
+                <Image source={{ uri: safeProfileUrl }} style={styles.avatar} />
               </View>
             </View>
 
@@ -102,8 +104,10 @@ export default function Profile() {
           {/* Bio Section */}
           <View style={styles.bioSection}>
             <Text style={styles.displayName}>{user.userName}</Text>
-            <Text>showing profile url for debugging</Text>
+            {/* <Text>showing profile url for debugging</Text>
             <Text>{user.profile?.url}</Text>
+            <Text>safe url:</Text>
+            <Text>{safeProfileUrl}</Text> */}
             <Text style={styles.bio}>
               Wallpaper enthusiast 🎨{"\n"}
               Curating beautiful backgrounds{"\n"}

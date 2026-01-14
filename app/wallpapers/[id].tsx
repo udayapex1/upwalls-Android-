@@ -425,6 +425,8 @@ export default function WallpaperPreview() {
     }
   };
 
+  const safeProfileUrl = (wallpaper as any)?.userProfile.replace(/^(http:\/\/|https:\/\/)/, 'https://');
+
   if (loading) {
     return (
       <View style={[styles.container, styles.centerContent]}>
@@ -615,7 +617,7 @@ export default function WallpaperPreview() {
                 <View style={styles.creatorLeft}>
                   {(wallpaper as any)?.userProfile ? (
                     <Image
-                      source={{ uri: (wallpaper as any).userProfile }}
+                      source={{ uri: safeProfileUrl }}
                       style={styles.avatar}
                     />
                   ) : (

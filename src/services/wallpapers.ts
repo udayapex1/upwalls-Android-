@@ -41,12 +41,10 @@ export const getUserWallpapers = async (): Promise<Wallpaper[]> => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("----------");
-    console.log("test response:", data);
-    console.log("----------");
+    // console.log("test response:", data);
 
 
-    console.log("User wallpapers API response:", JSON.stringify(data, null, 2));
+    // console.log("User wallpapers API response:", JSON.stringify(data, null, 2));
 
     // Handle both array response and nested response
     if (Array.isArray(data)) {
@@ -175,5 +173,66 @@ export const getWallpaperById = async (id: string): Promise<Wallpaper | null> =>
 
   console.error("All endpoints failed for wallpaper ID:", id);
   return null;
+};
+
+// Upload a new wallpaper
+export const uploadWallpaper = async (
+  title: string,
+  description: string,
+  category: string,
+  imageUri: string,
+  tags: string[] = [],
+  deviceType: "Mobile" | "Desktop" = "Mobile"
+): Promise<{ success: boolean; error?: string; wallpaper?: Wallpaper }> => {
+  try {
+    const token = await SecureStore.getItemAsync("token");
+    if (!token) {
+      return { success: false, error: "Not authenticated" };
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("deviceSupport", deviceType);
+
+    formData.append("tags", JSON.stringify(tags));
+
+    const filename = imageUri.split("/").pop() || "upload.jpg";
+    const match = /\.(\w+)$/.exec(filename);
+    const type = match ? `image/${match[1]}` : "image/jpeg";
+
+    const fileObject: any = {
+      uri: imageUri,
+      name: filename,
+      type,
+    };
+
+    formData.append("wallpaperImage", fileObject);
+
+    console.log("Uploading wallpaper to:", `${BACKEND_URL}/api/wallpaper/createPost`);
+
+    const response = await fetch(`${BACKEND_URL}/api/wallpaper/createPost`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Upload failed");
+    }
+
+    console.log("Upload successful:", data);
+    return { success: true, wallpaper: data.wallpaper || data };
+  } catch (error: any) {
+    console.error("Error uploading wallpaper:", error);
+    return { success: false, error: error.message || "Upload failed" };
+  }
 };
 

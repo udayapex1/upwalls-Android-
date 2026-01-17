@@ -14,6 +14,7 @@ export type UserData = {
     public_id: string;
     url: string;
   };
+  createdAt?: string;
 };
 
 interface AuthContextType {

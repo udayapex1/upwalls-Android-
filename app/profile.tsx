@@ -180,21 +180,25 @@ export default function Profile() {
             <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
 
-          {/* <TouchableOpacity style={styles.menuItem} activeOpacity={0.6}>
+          <TouchableOpacity style={styles.menuItem} activeOpacity={0.6}>
             <View style={styles.menuItemLeft}>
               <Ionicons name="settings-outline" size={22} color={Colors.textPrimary} />
               <Text style={styles.menuItemText}>Settings</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
-          </TouchableOpacity> */}
+          </TouchableOpacity>
 
-          {/* <TouchableOpacity style={styles.menuItem} activeOpacity={0.6}>
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            activeOpacity={0.6}
+            onPress={() => router.push("/dashboard")}
+          >
             <View style={styles.menuItemLeft}>
               <Ionicons name="time-outline" size={22} color={Colors.textPrimary} />
-              <Text style={styles.menuItemText}>Your activity</Text>
+              <Text style={styles.menuItemText}>Dashboard</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
-          </TouchableOpacity> */}
+          </TouchableOpacity>
 
           {/* <TouchableOpacity style={styles.menuItem} activeOpacity={0.6}>
             <View style={styles.menuItemLeft}>

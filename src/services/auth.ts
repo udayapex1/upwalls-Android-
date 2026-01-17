@@ -1,7 +1,8 @@
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 
-export const BACKEND_URL = "https://upwall-fullstack.onrender.com"
+export const BACKEND_URL = "https://upwall-fullstack-e9qy.onrender.com"
+// export const BACKEND_URL = "https://upwall-fullstack.onrender.com"
 
 
 export const loginUser = async (

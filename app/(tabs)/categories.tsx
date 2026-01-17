@@ -116,7 +116,7 @@ export default function Categories() {
 
   const handleCategoryPress = (category: CategoryData) => {
     router.push({
-      pathname: "/categories/[category]",
+      pathname: "/wallpapers/categories/[category]",
       params: {
         category: category.name,
       },

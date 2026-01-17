@@ -19,6 +19,7 @@ type TopNavbarProps = {
   subtitle?: string;
   showLogo?: boolean;
   logoSource?: any;
+  onPressLogo?: () => void;
 };
 
 export default function TopNavbar({
@@ -26,6 +27,7 @@ export default function TopNavbar({
   subtitle,
   showLogo = true,
   logoSource,
+  onPressLogo,
 }: TopNavbarProps) {
   const insets = useSafeAreaInsets();
   const { user, isAuthenticated, refreshUser } = useAuth();
@@ -54,6 +56,8 @@ export default function TopNavbar({
       router.push("/(auth)/login");
     }
   };
+  
+
 
   return (
     <View
@@ -72,7 +76,13 @@ export default function TopNavbar({
           {showLogo && (
             <View style={styles.logoContainer}>
               {logoSource ? (
-                <Image source={logoSource} style={styles.logo} />
+                onPressLogo ? (
+                  <TouchableOpacity onPress={onPressLogo} activeOpacity={0.7}>
+                    <Image source={logoSource} style={styles.logo} />
+                  </TouchableOpacity>
+                ) : (
+                  <Image source={logoSource} style={styles.logo} />
+                )
               ) : (
                 <View style={styles.logoPlaceholder}>
                   <Ionicons
@@ -105,7 +115,7 @@ export default function TopNavbar({
             <>
               {(user.profile?.url || user.photo?.url) ? (
                 <Image
-                  source={{ uri: user.profile?.url || user.photo?.url }}
+                  source={{ uri: user.profile?.url.replace("http://", "https://") || user.photo?.url.replace("http://", "https://") }}
                   style={styles.avatar}
                   onError={(error) => {
                     console.error("TopNavbar image load error:", error);

@@ -1,7 +1,10 @@
+import Toast from "@/src/components/Toast";
 import TopNavbar from "@/src/components/TopNavbar";
 import { Colors } from "@/src/constants/color";
 import { useWallpapers } from "@/src/context/WallpapersContext";
+import { checkForUpdates } from "@/src/services/appInfo";
 import { Ionicons } from "@expo/vector-icons";
+import Constants from "expo-constants";
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -17,6 +20,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 // Shuffle function using Fisher-Yates algorithm
@@ -28,6 +32,8 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   }
   return shuffled;
 };
+ 
+const { version } = Constants.expoConfig;
 
 // Responsive column calculation
 const getNumColumns = () => {
@@ -49,6 +55,8 @@ const getCardSize = () => {
 export default function Explore() {
   const [numColumns] = useState(getNumColumns());
   const [imageLoading, setImageLoading] = useState<{ [key: string]: boolean }>({});
+  const [showVersionToast, setShowVersionToast] = useState(false);
+  const [updateAvailable, setUpdateAvailable] = useState(false);
   const insets = useSafeAreaInsets();
   const { allWallpapers, isLoading, refreshAllWallpapers } = useWallpapers();
   const cardSize = getCardSize();
@@ -80,8 +88,26 @@ export default function Explore() {
   }, [allWallpapers, isLoading]);
 
   // Refresh wallpapers when component mounts
+  // Check for updates on mount
   useEffect(() => {
     refreshAllWallpapers();
+
+    const checkUpdates = async () => {
+      // Small delay to let app settle
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const result = await checkForUpdates();
+      if (result.hasUpdate) {
+        setUpdateAvailable(true);
+        setShowVersionToast(true);
+      } else {
+        setUpdateAvailable(false);
+        // Optional: show "latest version" toast for a short time
+        setShowVersionToast(true);
+      }
+    };
+
+    checkUpdates();
   }, []);
 
   const handleImageLoadStart = (id: string) => {
@@ -92,7 +118,7 @@ export default function Explore() {
     setImageLoading((prev) => ({ ...prev, [id]: false }));
   };
  
-  const getDisplayCount = (count) => {
+  const getDisplayCount = (count: number) => {
   if (count < 10) return `${count}`;
   return `${Math.floor(count / 50) * 50}+`;
 };
@@ -102,6 +128,7 @@ export default function Explore() {
       <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
       
       <TopNavbar title="Explore"
+      onPressLogo={() => router.push("/check-update")}
       logoSource={{
     uri: "https://res.cloudinary.com/dwemivxbp/image/upload/v1767461573/Gemini_Generated_Image_wlp3otwlp3otwlp3-removebg-preview_sviab7.png",
   }}/>
@@ -209,6 +236,18 @@ export default function Explore() {
           )}
         />
       )}
+      
+      <Toast 
+        message={updateAvailable ? "New version is available. Click to update" : `You are using version ${version}`}
+        visible={showVersionToast} 
+        onHide={() => setShowVersionToast(false)}
+        type={updateAvailable ? "info" : "success"}
+        duration={updateAvailable ? 6000 : 3000}
+        onPress={updateAvailable ? () => {
+          setShowVersionToast(false);
+          router.push("/check-update");
+        } : undefined}
+      />
     </View>
   );
 }

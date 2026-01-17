@@ -3,7 +3,7 @@ import { Colors } from "@/src/constants/color";
 import { useWallpapers } from "@/src/context/WallpapersContext";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Dimensions,
@@ -199,7 +199,7 @@ export default function Trending() {
               <View style={styles.userInfo}>
                 {item.userProfile ? (
                   <Image
-                    source={{ uri: item.userProfile }}
+                    source={{ uri: item.userProfile.replace("http://", "https://") }}
                     style={styles.userAvatar}
                   />
                 ) : (

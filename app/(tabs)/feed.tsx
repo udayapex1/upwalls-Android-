@@ -1,13 +1,20 @@
-import React, { useState, useRef, useMemo } from "react";
-import { 
-  View, Text, FlatList, Image, Dimensions, StyleSheet, 
-  ActivityIndicator, TouchableWithoutFeedback, Animated, TouchableOpacity 
-} from "react-native";
 import { useWallpapers } from "@/src/context/WallpapersContext";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
+import React, { useMemo, useRef, useState } from "react";
+import {
+  ActivityIndicator,
+  Animated,
+  Dimensions,
+  FlatList, Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View
+} from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { height, width } = Dimensions.get("window");
 
@@ -106,7 +113,7 @@ const WallpaperItem: React.FC<WallpaperItemProps> = ({ item, onPress }) => {
                 <View style={styles.userInfo}>
                   {item.userProfile ? (
                     <Image
-                      source={{ uri: item.userProfile }}
+                      source={{ uri: item.userProfile.replace("http://", "https://") }}
                       style={styles.userAvatar}
                     />
                   ) : (

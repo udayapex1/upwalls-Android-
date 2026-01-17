@@ -3,9 +3,9 @@ import { Colors } from "@/src/constants/color";
 import { useAuth } from "@/src/context/AuthContext";
 import { useWallpapers } from "@/src/context/WallpapersContext";
 import { Ionicons } from "@expo/vector-icons";
+import Constants from "expo-constants";
 import { router } from "expo-router";
 import { useEffect } from "react";
-
 import {
   Image,
   ScrollView,
@@ -31,6 +31,8 @@ export default function Profile() {
   const { user, logout } = useAuth();
   const insets = useSafeAreaInsets();
   const { userWallpapers, isLoading, refreshUserWallpapers } = useWallpapers();
+
+  const { version } = Constants.expoConfig;
 
   useEffect(() => {
     if (!user) {
@@ -249,7 +251,12 @@ export default function Profile() {
           <Text style={styles.logoutText}>Log out</Text>
         </TouchableOpacity>
 
-        <Text style={styles.version}>Version 1.0.0</Text>
+        <TouchableOpacity 
+          onPress={() => router.push("/check-update")}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.version}>Version {version}</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

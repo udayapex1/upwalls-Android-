@@ -56,49 +56,7 @@ UpWalls is built with an emphasis on maintainability, scalability, and developer
 | **Networking** | Axios | Robust HTTP client for reliable API communication. |
 | **UI/UX** | Reanimated 4, Linear Gradient | For high-performance animations and advanced visual effects. |
 
-## ⚡ Getting Started
 
-### Prerequisites
-
-- **Node.js** (v18.x or higher)
-- **npm** or **yarn**
-- **Expo Go** app on your physical device or an Android/iOS Simulator.
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/up-walls.git
-   cd up-walls
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npx expo start
-   ```
-
-4. **Launch the App**
-   - **Physical Device**: Scan the QR code with your camera (iOS) or Expo Go (Android).
-   - **Simulator**: Press `a` for Android Emulator or `i` for iOS Simulator.
-
-## 📱 Project Structure
-
-```bash
-up-walls/
-├── app/                  # File-based routing (screens & layouts)
-├── src/
-│   ├── components/       # Reusable UI components
-│   ├── context/          # Application state (Auth, Wallpapers)
-│   ├── services/         # API integration layer
-│   └── utils/            # Helper functions and constants
-├── assets/               # Static resources (images, fonts)
-└── app.json              # Expo configuration
-```
 
 ## 🤝 Contributing
 

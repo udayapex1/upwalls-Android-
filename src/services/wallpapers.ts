@@ -236,3 +236,37 @@ export const uploadWallpaper = async (
   }
 };
 
+// Delete a wallpaper
+export const deleteWallpaper = async (
+  id: string
+): Promise<{ success: boolean; error?: string }> => {
+  try {
+    const token = await SecureStore.getItemAsync("token");
+    if (!token) {
+      return { success: false, error: "Not authenticated" };
+    }
+
+    console.log(`Deleting wallpaper ${id}...`);
+
+    const response = await fetch(`${BACKEND_URL}/api/wallpaper/deltePost/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Delete failed");
+    }
+
+    console.log("Delete successful:", data);
+    return { success: true };
+  } catch (error: any) {
+    console.error("Error deleting wallpaper:", error);
+    return { success: false, error: error.message || "Delete failed" };
+  }
+};
+

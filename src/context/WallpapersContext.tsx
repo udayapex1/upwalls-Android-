@@ -1,4 +1,4 @@
-import { getAllWallpapers, getUserWallpapers, getWallpaperById, Wallpaper } from "@/src/services/wallpapers";
+import { deleteWallpaper as deleteWallpaperService, getAllWallpapers, getUserWallpapers, getWallpaperById, Wallpaper } from "@/src/services/wallpapers";
 import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
 
@@ -10,6 +10,7 @@ interface WallpapersContextType {
   refreshUserWallpapers: () => Promise<void>;
   refreshAllWallpapers: () => Promise<void>;
   getWallpaper: (id: string) => Promise<Wallpaper | null>;
+  deleteWallpaper: (id: string) => Promise<boolean>;
 }
 
 const WallpapersContext = createContext<WallpapersContextType | undefined>(undefined);
@@ -83,6 +84,27 @@ export function WallpapersProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const deleteWallpaper = async (id: string): Promise<boolean> => {
+    try {
+      console.log("Deleting wallpaper from context:", id);
+      const { success, error } = await deleteWallpaperService(id);
+      
+      if (success) {
+        // Remove from local state immediately
+        setUserWallpapers((prev) => prev.filter((w) => w._id !== id));
+        // Also remove from all wallpapers if present
+        setAllWallpapers((prev) => prev.filter((w) => w._id !== id));
+        return true;
+      } else {
+        console.error("Failed to delete wallpaper:", error);
+        return false;
+      }
+    } catch (error) {
+      console.error("Error in deleteWallpaper context:", error);
+      return false;
+    }
+  };
+
   const value: WallpapersContextType = {
     userWallpapers,
     allWallpapers,
@@ -91,6 +113,7 @@ export function WallpapersProvider({ children }: { children: ReactNode }) {
     refreshUserWallpapers,
     refreshAllWallpapers,
     getWallpaper,
+    deleteWallpaper,
   };
 
   return (

@@ -5,15 +5,16 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import {
-    ActivityIndicator,
-    Dimensions,
-    FlatList,
-    Image,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  Dimensions,
+  FlatList,
+  Image,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -40,7 +41,7 @@ export default function MyUploads() {
   const [numColumns] = useState(getNumColumns());
   const [imageLoading, setImageLoading] = useState<{ [key: string]: boolean }>({});
   const insets = useSafeAreaInsets();
-  const { userWallpapers, isLoading, refreshUserWallpapers } = useWallpapers();
+  const { userWallpapers, isLoading, refreshUserWallpapers, deleteWallpaper } = useWallpapers();
   const cardSize = getCardSize();
   const cardHeight = cardSize * 1.5;
 
@@ -55,6 +56,32 @@ export default function MyUploads() {
 
   const handleImageLoadEnd = (id: string) => {
     setImageLoading((prev) => ({ ...prev, [id]: false }));
+  };
+
+  const handleDelete = (id: string) => {
+    Alert.alert(
+      "Delete Wallpaper",
+      "Are you sure you want to delete this wallpaper?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: async () => {
+             const success = await deleteWallpaper(id);
+             if (success) {
+               Alert.alert("Success", "Wallpaper deleted successfully");
+               console.log("Deleted wallpaper", id);
+             } else {
+               Alert.alert("Error", "Failed to delete wallpaper");
+             }
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -169,6 +196,14 @@ export default function MyUploads() {
                 <View style={styles.overlay}>
                   <View style={styles.overlayGradient} />
                 </View>
+                
+                <TouchableOpacity
+                  style={styles.deleteButton}
+                  onPress={() => handleDelete(item._id)}
+                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
+                  <Ionicons name="trash-outline" size={20} color="#FF6B6B" />
+                </TouchableOpacity>
               </View>
             </TouchableOpacity>
           )}
@@ -293,5 +328,14 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 12,
     color: Colors.textSecondary,
+  },
+  deleteButton: {
+    position: "absolute",
+    top: 8,
+    right: 8,
+    backgroundColor: "rgba(0,0,0,0.6)",
+    borderRadius: 20,
+    padding: 6,
+    zIndex: 10,
   },
 });

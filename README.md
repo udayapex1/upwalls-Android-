@@ -68,7 +68,7 @@ We welcome contributions from the open-source community. UpWalls is structured t
 4. **Push** to the branch (`git push origin feature/AmazingFeature`).
 5. Open a **Pull Request**.
 
-*> Note: Please ensure all new components are typed correctly with TypeScript and follow the project's linting rules.*
+*> Note: Please ensure all new components are typed correctly with TypeScript and follow the project's linting rules*
 
 ## 📄 License
 

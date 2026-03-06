@@ -72,6 +72,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
+![Visitor Count](https://komarev.com/ghpvc/?username=udayapex1&color=brightgreen)
+
 <div align="center">
   <p>Built with ❤️ by the UpWalls Team</p>
 </div>

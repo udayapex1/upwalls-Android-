@@ -3,16 +3,12 @@
     "version": ">= 16.28.0",
     "appVersionSource": "remote"
   },
- "build": {
+  "build": {
     "preview": {
-      "android": {
-        "buildType": "apk"
-      }
+      "android": {}
     },
     "production": {
-      "android": {
-        "buildType": "apk"
-      }
+      "android": {}
     }
   },
   "submit": {

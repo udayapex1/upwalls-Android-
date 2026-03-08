@@ -17,10 +17,6 @@
   </p>
 
   <p align="center">
-    <a href="#">
-      <img src="https://img.shields.io/badge/Download_on_the-App_Store-black?style=for-the-badge&logo=apple" alt="Download on the App Store">
-    </a>
-    &nbsp;&nbsp;
     <a href="https://github.com/udayapex1/upwalls-Android-/releases/download/v1.0.1/UpWalls-v1.0.1.apk">
       <img src="https://img.shields.io/badge/Download_APK-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download APK">
     </a>
@@ -68,13 +64,15 @@ We welcome contributions from the open-source community. UpWalls is structured t
 4. **Push** to the branch (`git push origin feature/AmazingFeature`).
 5. Open a **Pull Request**.
 
-*> Note: Please ensure all new components are typed correctly with TypeScript and follow the project's linting rules.*
+*> Note: Please ensure all new components are typed correctly with TypeScript and follow the project's linting rules*
 
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
+
+![Visitor Count](https://komarev.com/ghpvc/?username=udayapex1&color=brightgreen)
 
 <div align="center">
   <p>Built with ❤️ by the UpWalls Team</p>

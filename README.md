@@ -23,6 +23,7 @@
 <br />
 
 [![Download APK](https://img.shields.io/badge/Download_APK-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/udayapex1/upwalls-Android-/releases/download/v1.0.1/UpWalls-v1.0.1.apk)
+[![Indus Appstore](https://img.shields.io/badge/Indus_Appstore-Download-f97316?style=for-the-badge&logo=android&logoColor=white)](https://indusapp.store/h2i1ccwa)
 
 <br />
 
@@ -42,6 +43,7 @@ UpWalls is a production-ready wallpaper application built on the Expo ecosystem.
 - **Native Performance** — 60fps animations powered by Reanimated 4 and Native Gesture Handler
 - **Secure Auth** — Token-based authentication with protected routes and secure local storage
 - **Sharing & Deep Links** — Built-in share sheet integration and deep linking support
+- **Zero Ads** — Clean, distraction-free experience with no advertisements
 - **Cross-Platform** — Single codebase, fully native feel on both iOS and Android
 
 ---
@@ -94,9 +96,11 @@ npx expo run:ios       # iOS
 
 ### Download (Android)
 
-Prefer to skip the build? Grab the latest APK directly:
+Prefer to skip the build? Grab the latest APK directly or download from Indus Appstore:
 
 **[→ Download UpWalls v1.0.1 APK](https://github.com/udayapex1/upwalls-Android-/releases/download/v1.0.1/UpWalls-v1.0.1.apk)**
+
+**[→ Download on Indus Appstore](https://indusapp.store/h2i1ccwa)**
 
 ---
 

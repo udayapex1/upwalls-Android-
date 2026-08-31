@@ -159,7 +159,7 @@ export default function Login() {
             activeOpacity={0.7}
           >
             <Text style={styles.registerButtonText}>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Text style={styles.registerButtonTextBold}>Register</Text>
             </Text>
           </TouchableOpacity>

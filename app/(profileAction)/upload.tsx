@@ -24,9 +24,9 @@ export default function Upload() {
   const insets = useSafeAreaInsets();
   const [currentStep, setCurrentStep] = useState(1);
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [description] = useState("");
   const [category, setCategory] = useState("Abstract");
-  const [tags, setTags] = useState("");
+  const [tags] = useState("");
   const [deviceType, setDeviceType] = useState<"Mobile" | "Desktop">("Mobile");
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);

@@ -18,7 +18,8 @@ const { width } = Dimensions.get("window");
 export default function About() {
   const router = useRouter();
 
-  const features = [
+  type IconName = React.ComponentProps<typeof Ionicons>["name"];
+  const features: { icon: IconName; title: string; desc: string }[] = [
     {
       icon: "shield-checkmark-outline",
       title: "Premium Curation",
@@ -41,7 +42,7 @@ export default function About() {
     },
   ];
 
-  const roadmap = [
+  const roadmap: { icon: IconName; text: string }[] = [
     { icon: "bookmark-outline", text: "Cloud-synced Collections" },
     { icon: "options-outline", text: "Advanced Metadata Filtering" },
     { icon: "hardware-chip-outline", text: "AI-Powered Upscaling" },

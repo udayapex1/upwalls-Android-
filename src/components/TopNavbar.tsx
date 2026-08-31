@@ -1,8 +1,8 @@
 import { Colors } from "@/src/constants/color";
 import { useAuth } from "@/src/context/AuthContext";
+import { resolveImageUrl } from "@/src/utils/imageUrl";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useEffect } from "react";
 import {
   Image,
   Platform,
@@ -30,24 +30,7 @@ export default function TopNavbar({
   onPressLogo,
 }: TopNavbarProps) {
   const insets = useSafeAreaInsets();
-  const { user, isAuthenticated, refreshUser } = useAuth();
-
-  // Debug: Log user data changes
-  useEffect(() => {
-    console.log("TopNavbar - User updated:", {
-      hasUser: !!user,
-      userName: user?.userName,
-      profileUrl: user?.profile?.url,
-      photoUrl: user?.photo?.url,
-    });
-  }, [user]);
-
-  // Refresh user data when component mounts if authenticated
-  useEffect(() => {
-    if (isAuthenticated && user) {
-      refreshUser();
-    }
-  }, []);
+  const { user, isAuthenticated } = useAuth();
 
   const handleProfilePress = () => {
     if (isAuthenticated && user) {
@@ -115,7 +98,7 @@ export default function TopNavbar({
             <>
               {(user.profile?.url || user.photo?.url) ? (
                 <Image
-                  source={{ uri: user.profile?.url.replace("http://", "https://") || user.photo?.url.replace("http://", "https://") }}
+                  source={{ uri: resolveImageUrl(user.profile?.url || user.photo?.url) }}
                   style={styles.avatar}
                   onError={(error) => {
                     console.error("TopNavbar image load error:", error);

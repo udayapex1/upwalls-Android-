@@ -194,7 +194,7 @@ export default function Policy() {
             Last updated: January 14, 2026
           </Text>
           <Text style={styles.footerSubtext}>
-            We're committed to protecting your privacy and ensuring transparency.
+            We&apos;re committed to protecting your privacy and ensuring transparency.
           </Text>
         </View>
       </ScrollView>

@@ -1,4 +1,5 @@
 import { useWallpapers } from "@/src/context/WallpapersContext";
+import { resolveImageUrl } from "@/src/utils/imageUrl";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -35,8 +36,6 @@ interface WallpaperItemProps {
 
 const WallpaperItem: React.FC<WallpaperItemProps> = ({ item, onPress }) => {
   const [liked, setLiked] = useState(false);
-  const [downloading, setDownloading] = useState(false);
-  const insets = useSafeAreaInsets();
   const likeScale = useRef(new Animated.Value(0)).current;
   let lastTap: number | null = null;
 
@@ -52,15 +51,6 @@ const WallpaperItem: React.FC<WallpaperItemProps> = ({ item, onPress }) => {
     } else {
       lastTap = now;
     }
-  };
-
-  const handleDownload = async (e: any) => {
-    e.stopPropagation();
-    setDownloading(true);
-    // Simulate download
-    setTimeout(() => {
-      setDownloading(false);
-    }, 2000);
   };
 
   const handleViewDetails = () => {
@@ -113,7 +103,7 @@ const WallpaperItem: React.FC<WallpaperItemProps> = ({ item, onPress }) => {
                 <View style={styles.userInfo}>
                   {item.userProfile ? (
                     <Image
-                      source={{ uri: item.userProfile.replace("http://", "https://") }}
+                      source={{ uri: resolveImageUrl(item.userProfile) }}
                       style={styles.userAvatar}
                     />
                   ) : (
@@ -182,7 +172,7 @@ export default function Feed() {
 
   // Randomize wallpapers using Fisher-Yates shuffle
   const randomizedWallpapers = useMemo(() => {
-    return shuffleArray(allWallpapers);
+    return shuffleArray(refreshKey >= 0 ? allWallpapers : []);
   }, [allWallpapers, refreshKey]);
 
   const handleWallpaperPress = (wallpaper: any) => {

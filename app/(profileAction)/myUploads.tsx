@@ -48,7 +48,7 @@ export default function MyUploads() {
   // Refresh user wallpapers when component mounts
   useEffect(() => {
     refreshUserWallpapers();
-  }, []);
+  }, [refreshUserWallpapers]);
 
   const handleImageLoadStart = (id: string) => {
     setImageLoading((prev) => ({ ...prev, [id]: true }));
@@ -126,10 +126,10 @@ export default function MyUploads() {
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
               <Ionicons name="cloud-upload-outline" size={64} color={Colors.textSecondary} />
-              <Text style={styles.emptyText}>You haven't uploaded any wallpapers yet</Text>
+              <Text style={styles.emptyText}>You haven&apos;t uploaded any wallpapers yet</Text>
               <TouchableOpacity 
                 style={styles.uploadButton}
-                onPress={() => router.push("/(tabs)/upload")}
+                onPress={() => router.push("/(profileAction)/upload")}
               >
                 <Text style={styles.uploadButtonText}>Upload Now</Text>
               </TouchableOpacity>

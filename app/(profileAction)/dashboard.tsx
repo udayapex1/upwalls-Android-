@@ -3,11 +3,10 @@ import { Colors } from "@/src/constants/color";
 import { useAuth } from "@/src/context/AuthContext";
 import { useWallpapers } from "@/src/context/WallpapersContext";
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { Href, router } from "expo-router";
 import React from "react";
 import {
   Alert,
-  Dimensions,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -16,8 +15,6 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-const { width } = Dimensions.get("window");
 
 export default function Dashboard() {
   const insets = useSafeAreaInsets();
@@ -33,7 +30,7 @@ export default function Dashboard() {
    * "Irrelevant" colors removed. Icons now use Colors.textPrimary.
    * "No out color" interpreted as no background color for the icon container.
    */
-  const quickActions = [
+  const quickActions: readonly { id: string; title: string; icon: React.ComponentProps<typeof Ionicons>["name"]; route: Href }[] = [
     {
       id: "upload",
       title: "Upload New",
@@ -44,26 +41,24 @@ export default function Dashboard() {
       id: "profile",
       title: "Edit Profile",
       icon: "person-outline",
-      route: "/profile/edit", // Placeholder route
+      route: "/profile/edit" as Href, // Placeholder route
     },
     {
       id: "analytics",
       title: "Analytics",
       icon: "bar-chart-outline",
-      route: "/analytics", // Placeholder
+      route: "/analytics" as Href, // Placeholder
     },
     {
       id: "settings",
       title: "Settings",
       icon: "settings-outline",
-      route: "/settings", // Placeholder
+      route: "/settings" as Href, // Placeholder
     },
   ];
 
-  const handleActionPress = (route: string) => {
-    // Handle navigation - replace with your router logic
-    console.log("Navigating to", route);
-    Example: router.push(route);
+  const handleActionPress = (route: Href) => {
+    router.push(route);
   };
 
   return (
@@ -89,7 +84,7 @@ export default function Dashboard() {
           <Text style={styles.username} numberOfLines={1}>
             {user?.userName || "Creator"}
           </Text>
-          <Text style={styles.subtitle}>Here's your creative overview</Text>
+          <Text style={styles.subtitle}>Here&apos;s your creative overview</Text>
         </View>
 
         {/* Stats Grid (Bento Style) */}
@@ -162,7 +157,7 @@ export default function Dashboard() {
                 onPress={() => handleActionPress(quickActions[0].route)}
               >
                 <View style={[styles.actionIcon]}>
-                  <Ionicons name={quickActions[0].icon as any} size={28} color={Colors.textPrimary} />
+                  <Ionicons name={quickActions[0].icon} size={28} color={Colors.textPrimary} />
                 </View>
                 <Text style={styles.actionTitle} numberOfLines={1}>
                   {quickActions[0].title}
@@ -175,7 +170,7 @@ export default function Dashboard() {
                 onPress={() => handleActionPress(quickActions[1].route)}
               >
                 <View style={[styles.actionIcon]}>
-                  <Ionicons name={quickActions[1].icon as any} size={24} color={Colors.textPrimary} />
+                  <Ionicons name={quickActions[1].icon} size={24} color={Colors.textPrimary} />
                 </View>
                 <Text style={styles.actionTitle} numberOfLines={1}>
                   {quickActions[1].title}
@@ -191,7 +186,7 @@ export default function Dashboard() {
                 onPress={() => handleActionPress(quickActions[2].route)}
               >
                 <View style={[styles.actionIcon]}>
-                  <Ionicons name={quickActions[2].icon as any} size={24} color={Colors.textPrimary} />
+                  <Ionicons name={quickActions[2].icon} size={24} color={Colors.textPrimary} />
                 </View>
                 <Text style={styles.actionTitle} numberOfLines={1}>
                   {quickActions[2].title}
@@ -204,7 +199,7 @@ export default function Dashboard() {
                 onPress={() => handleActionPress(quickActions[3].route)}
               >
                 <View style={[styles.actionIcon]}>
-                  <Ionicons name={quickActions[3].icon as any} size={24} color={Colors.textPrimary} />
+                  <Ionicons name={quickActions[3].icon} size={24} color={Colors.textPrimary} />
                 </View>
                 <Text style={styles.actionTitle} numberOfLines={1}>
                   {quickActions[3].title}

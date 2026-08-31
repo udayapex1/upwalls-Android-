@@ -2,6 +2,7 @@ import TopNavbar from "@/src/components/TopNavbar";
 import { Colors } from "@/src/constants/color";
 import { useAuth } from "@/src/context/AuthContext";
 import { useWallpapers } from "@/src/context/WallpapersContext";
+import { resolveImageUrl } from "@/src/utils/imageUrl";
 import { Ionicons } from "@expo/vector-icons";
 import Constants from "expo-constants";
 import { router } from "expo-router";
@@ -17,22 +18,12 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-type UserData = {
-  _id: string;
-  email: string;
-  userName: string;
-  photo?: {
-    public_id: string;
-    url: string;
-  };
-};
-
 export default function Profile() {
   const { user, logout } = useAuth();
   const insets = useSafeAreaInsets();
-  const { userWallpapers, isLoading, refreshUserWallpapers } = useWallpapers();
+  const { userWallpapers } = useWallpapers();
 
-  const { version } = Constants.expoConfig;
+  const version = Constants.expoConfig?.version ?? "1.0.0";
 
   useEffect(() => {
     if (!user) {
@@ -53,13 +44,8 @@ export default function Profile() {
     router.push("/about");
   };
 
-  const handleEditProfile = () => {
-    console.log("Edit profile");
-  };
-
-  console.log("this is user :", user);
   const userProfile = user?.profile as { url: string } | undefined;
-  const safeProfileUrl = userProfile?.url.replace(/^(http:\/\/|https:\/\/)/, 'https://');
+  const safeProfileUrl = resolveImageUrl(userProfile?.url);
 
   if (!user) return null;
 
@@ -89,7 +75,13 @@ export default function Profile() {
             {/* Avatar */}
             <View style={styles.avatarWrapper}>
               <View style={styles.avatarContainer}>
+              {safeProfileUrl ? (
                 <Image source={{ uri: safeProfileUrl }} style={styles.avatar} />
+              ) : (
+                <View style={styles.avatarPlaceholder}>
+                  <Text style={styles.avatarInitial}>{user.userName?.charAt(0).toUpperCase() || "U"}</Text>
+                </View>
+              )}
               </View>
             </View>
 
@@ -121,7 +113,7 @@ export default function Profile() {
           {/* <View style={styles.actionButtons}>
             <TouchableOpacity
               style={styles.editProfileButton}
-              onPress={handleEditProfile}
+              onPress={() => {}}
               activeOpacity={0.7}
             >
               <Text style={styles.editProfileText}>Edit profile</Text>
@@ -302,6 +294,19 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 40,
     backgroundColor: Colors.surface,
+  },
+  avatarPlaceholder: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: Colors.accent + "20",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  avatarInitial: {
+    fontSize: 28,
+    fontWeight: "700",
+    color: Colors.textPrimary,
   },
   statsRow: {
     flex: 1,

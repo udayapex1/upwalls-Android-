@@ -1,6 +1,7 @@
 import TopNavbar from "@/src/components/TopNavbar";
 import { Colors } from "@/src/constants/color";
 import { useWallpapers } from "@/src/context/WallpapersContext";
+import { resolveImageUrl } from "@/src/utils/imageUrl";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useMemo, useState } from "react";
@@ -199,7 +200,7 @@ export default function Trending() {
               <View style={styles.userInfo}>
                 {item.userProfile ? (
                   <Image
-                    source={{ uri: item.userProfile.replace("http://", "https://") }}
+                    source={{ uri: resolveImageUrl(item.userProfile) }}
                     style={styles.userAvatar}
                   />
                 ) : (

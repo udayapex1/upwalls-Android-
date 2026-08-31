@@ -1,5 +1,5 @@
 import { deleteWallpaper as deleteWallpaperService, getAllWallpapers, getUserWallpapers, getWallpaperById, Wallpaper } from "@/src/services/wallpapers";
-import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import React, { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
 
 interface WallpapersContextType {
@@ -23,22 +23,7 @@ export function WallpapersProvider({ children }: { children: ReactNode }) {
 
   const userWallpapersCount = userWallpapers.length;
 
-  // Fetch user wallpapers when authenticated
-  useEffect(() => {
-    if (isAuthenticated) {
-      refreshUserWallpapers();
-    } else {
-      // Clear user wallpapers when not authenticated
-      setUserWallpapers([]);
-    }
-  }, [isAuthenticated]);
-
-  // Fetch all wallpapers on mount
-  useEffect(() => {
-    refreshAllWallpapers();
-  }, []);
-
-  const refreshUserWallpapers = async () => {
+  const refreshUserWallpapers = useCallback(async () => {
     if (!isAuthenticated) {
       console.log("Not authenticated, skipping user wallpapers fetch");
       return;
@@ -56,9 +41,9 @@ export function WallpapersProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [isAuthenticated]);
 
-  const refreshAllWallpapers = async () => {
+  const refreshAllWallpapers = useCallback(async () => {
     try {
       setIsLoading(true);
       console.log("Refreshing all wallpapers...");
@@ -71,9 +56,23 @@ export function WallpapersProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const getWallpaper = async (id: string): Promise<Wallpaper | null> => {
+  // Fetch user wallpapers when authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      refreshUserWallpapers();
+    } else {
+      setUserWallpapers([]);
+    }
+  }, [isAuthenticated, refreshUserWallpapers]);
+
+  // Fetch all wallpapers on mount
+  useEffect(() => {
+    refreshAllWallpapers();
+  }, [refreshAllWallpapers]);
+
+  const getWallpaper = useCallback(async (id: string): Promise<Wallpaper | null> => {
     try {
       console.log("Fetching wallpaper:", id);
       const wallpaper = await getWallpaperById(id);
@@ -82,9 +81,9 @@ export function WallpapersProvider({ children }: { children: ReactNode }) {
       console.error("Error fetching wallpaper:", error);
       return null;
     }
-  };
+  }, []);
 
-  const deleteWallpaper = async (id: string): Promise<boolean> => {
+  const deleteWallpaper = useCallback(async (id: string): Promise<boolean> => {
     try {
       console.log("Deleting wallpaper from context:", id);
       const { success, error } = await deleteWallpaperService(id);
@@ -103,7 +102,7 @@ export function WallpapersProvider({ children }: { children: ReactNode }) {
       console.error("Error in deleteWallpaper context:", error);
       return false;
     }
-  };
+  }, []);
 
   const value: WallpapersContextType = {
     userWallpapers,
@@ -130,4 +129,3 @@ export function useWallpapers() {
   }
   return context;
 }
-

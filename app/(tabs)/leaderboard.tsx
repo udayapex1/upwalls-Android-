@@ -5,7 +5,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Dimensions,
   FlatList,
   Image,
   StatusBar,
@@ -15,8 +14,6 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-const { width } = Dimensions.get("window");
 
 interface LeaderboardUser {
   _id: string;

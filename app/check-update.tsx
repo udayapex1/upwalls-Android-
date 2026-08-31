@@ -1,7 +1,7 @@
 import TopNavbar from "@/src/components/TopNavbar";
 import { checkForUpdates, UpdateCheckResult } from "@/src/services/appInfo";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
     Animated,
     Easing,
@@ -29,21 +29,7 @@ export default function CheckUpdate() {
   const pulseAnim = useRef(new Animated.Value(1)).current;
   const rotateAnim = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    check();
-    startPulseAnimation();
-  }, []);
-
-  useEffect(() => {
-    if (!checking && result) {
-      startContentAnimation();
-      if (result.hasUpdate) {
-        startShimmerAnimation();
-      }
-    }
-  }, [checking, result]);
-
-  const startPulseAnimation = () => {
+  const startPulseAnimation = useCallback(() => {
     Animated.loop(
       Animated.sequence([
         Animated.timing(pulseAnim, {
@@ -60,9 +46,9 @@ export default function CheckUpdate() {
         }),
       ])
     ).start();
-  };
+  }, [pulseAnim]);
 
-  const startContentAnimation = () => {
+  const startContentAnimation = useCallback(() => {
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -82,9 +68,9 @@ export default function CheckUpdate() {
         useNativeDriver: true,
       }),
     ]).start();
-  };
+  }, [cardSlide, fadeAnim, slideAnim]);
 
-  const startShimmerAnimation = () => {
+  const startShimmerAnimation = useCallback(() => {
     Animated.loop(
       Animated.timing(shimmerAnim, {
         toValue: 1,
@@ -102,9 +88,9 @@ export default function CheckUpdate() {
         useNativeDriver: true,
       })
     ).start();
-  };
+  }, [rotateAnim, shimmerAnim]);
 
-  const check = async () => {
+  const check = useCallback(async () => {
     setChecking(true);
     fadeAnim.setValue(0);
     slideAnim.setValue(50);
@@ -118,7 +104,21 @@ export default function CheckUpdate() {
     } finally {
       setChecking(false);
     }
-  };
+  }, [cardSlide, fadeAnim, slideAnim]);
+
+  useEffect(() => {
+    check();
+    startPulseAnimation();
+  }, [check, startPulseAnimation]);
+
+  useEffect(() => {
+    if (!checking && result) {
+      startContentAnimation();
+      if (result.hasUpdate) {
+        startShimmerAnimation();
+      }
+    }
+  }, [checking, result, startContentAnimation, startShimmerAnimation]);
 
   const handleUpdatePress = () => {
     if (result?.storeUrl) {
@@ -241,10 +241,10 @@ export default function CheckUpdate() {
                     </View>
                   </View>
 
-                  <Text style={styles.successTitle}>You're All Set</Text>
+                  <Text style={styles.successTitle}>You&apos;re All Set</Text>
                   <Text style={styles.successVersion}>Version {result?.currentVersion}</Text>
                   <Text style={styles.successMessage}>
-                    You're running the latest version. No updates available at this time.
+                    You&apos;re running the latest version. No updates available at this time.
                   </Text>
 
                   <TouchableOpacity

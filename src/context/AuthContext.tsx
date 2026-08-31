@@ -72,7 +72,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         console.log("Checking auth status - fetching user profile...");
         const profileData = await getUserProfile(storedAuth.token);
         
-        if (profileData) {
+        if (profileData?.unauthorized) {
+          await clearStoredAuth();
+          setUser(null);
+          setToken(null);
+        } else if (profileData) {
           // Handle both nested { user: {...} } and direct user object
           const userData = profileData.user || profileData;
           if (userData && userData._id) {
@@ -109,7 +113,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // Fetch fresh profile after login
         console.log("Login successful - fetching user profile...");
         const profileData = await getUserProfile(result.token);
-        if (profileData && profileData.user) {
+        if (profileData?.unauthorized) {
+          await clearStoredAuth();
+          setUser(null);
+          setToken(null);
+          return { success: false, error: "Session expired. Please log in again." };
+        } else if (profileData && profileData.user) {
           setUser(profileData.user);
           console.log("User profile updated after login:", JSON.stringify(profileData.user, null, 2));
         } else if (profileData) {
@@ -141,7 +150,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // Fetch fresh profile after registration
         console.log("Registration successful - fetching user profile...");
         const profileData = await getUserProfile(result.token);
-        if (profileData && profileData.user) {
+        if (profileData?.unauthorized) {
+          await clearStoredAuth();
+          setUser(null);
+          setToken(null);
+          return { success: false, error: "Session expired. Please log in again." };
+        } else if (profileData && profileData.user) {
           setUser(profileData.user);
           console.log("User profile updated after registration:", JSON.stringify(profileData.user, null, 2));
         } else if (profileData) {
@@ -186,7 +200,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         console.log("Refreshing user profile...");
         const profileData = await getUserProfile(storedAuth.token);
         
-        if (profileData && profileData.user) {
+        if (profileData?.unauthorized) {
+          await clearStoredAuth();
+          setUser(null);
+          setToken(null);
+          return;
+        } else if (profileData && profileData.user) {
           setUser(profileData.user);
           setToken(storedAuth.token);
           console.log("User profile refreshed successfully");
@@ -223,4 +242,3 @@ export function useAuth() {
   }
   return context;
 }
-

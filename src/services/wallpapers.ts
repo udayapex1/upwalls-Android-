@@ -18,8 +18,24 @@ export type Wallpaper = {
   category?: string;
   tags?: string[];
   uploadedBy?: string;
+  userName?: string;
+  userProfile?: string;
+  likes?: number;
+  likedBy?: string[];
+  deviceSupport?: "Mobile" | "Desktop" | string;
+  downloads?: number;
   createdAt: string;
   updatedAt: string;
+};
+
+const readResponseBody = async (response: Response): Promise<Record<string, any>> => {
+  const body = await response.text();
+  if (!body.trim()) return {};
+  try {
+    return JSON.parse(body);
+  } catch {
+    return { message: body.slice(0, 300) };
+  }
 };
 
 // Get user's uploaded wallpapers
@@ -34,7 +50,6 @@ export const getUserWallpapers = async (): Promise<Wallpaper[]> => {
     }
 
     console.log("Fetching user wallpapers...");
-    console.log("Token:", token);
 
     const { data } = await axios.get(`${BACKEND_URL}/api/wallpaper/myPost`, {
       headers: {
@@ -125,54 +140,13 @@ export const getAllWallpapers = async (): Promise<Wallpaper[]> => {
 
 // Get wallpaper by ID
 export const getWallpaperById = async (id: string): Promise<Wallpaper | null> => {
-  // Try multiple endpoint patterns based on getAllPosts pattern
-  const endpoints = [
-    `${BACKEND_URL}/api/wallpaper/getPost/${id}`,
-    `${BACKEND_URL}/api/wallpaper/${id}`,
-    `${BACKEND_URL}/api/wallpapers/${id}`,
-    `${BACKEND_URL}/api/wallpaper/post/${id}`,
-  ];
-
-  for (const endpoint of endpoints) {
-    try {
-      console.log("Trying endpoint:", endpoint);
-      const { data } = await axios.get(endpoint);
-
-      console.log("Wallpaper by ID API response:", JSON.stringify(data, null, 2));
-
-      // Handle different response structures
-      if (data && typeof data === 'object') {
-        // Try various nested structures
-        if (data.wallpaper) {
-          console.log("Found wallpaper in data.wallpaper");
-          return data.wallpaper;
-        } else if (data.data) {
-          console.log("Found wallpaper in data.data");
-          return data.data;
-        } else if (data.post) {
-          console.log("Found wallpaper in data.post");
-          return data.post;
-        } else if (data._id) {
-          // Direct wallpaper object
-          console.log("Found direct wallpaper object");
-          return data;
-        }
-      }
-
-      console.log("No wallpaper found in response structure");
-    } catch (error: any) {
-      console.log(`Endpoint ${endpoint} failed:`, {
-        message: error.message,
-        status: error.response?.status,
-        data: error.response?.data,
-      });
-      // Continue to next endpoint
-      continue;
-    }
+  try {
+    const { data } = await axios.get(`${BACKEND_URL}/api/wallpaper/${id}`);
+    return data?.wallpaper || data?.data || data?.post || data || null;
+  } catch (error: any) {
+    console.error("Error fetching wallpaper by ID:", error.response?.status || error.message);
+    return null;
   }
-
-  console.error("All endpoints failed for wallpaper ID:", id);
-  return null;
 };
 
 // Upload a new wallpaper
@@ -218,11 +192,10 @@ export const uploadWallpaper = async (
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
-        "Content-Type": "multipart/form-data",
       },
     });
 
-    const data = await response.json();
+    const data = await readResponseBody(response);
 
     if (!response.ok) {
       throw new Error(data.message || "Upload failed");
@@ -256,7 +229,7 @@ export const deleteWallpaper = async (
       },
     });
 
-    const data = await response.json();
+    const data = await readResponseBody(response);
 
     if (!response.ok) {
       throw new Error(data.message || "Delete failed");
@@ -269,4 +242,3 @@ export const deleteWallpaper = async (
     return { success: false, error: error.message || "Delete failed" };
   }
 };
-

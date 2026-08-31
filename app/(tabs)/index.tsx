@@ -33,7 +33,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
  
-const { version } = Constants.expoConfig;
+const version = Constants.expoConfig?.version ?? "1.0.0";
 
 // Responsive column calculation
 const getNumColumns = () => {
@@ -108,7 +108,7 @@ export default function Explore() {
     };
 
     checkUpdates();
-  }, []);
+  }, [refreshAllWallpapers]);
 
   const handleImageLoadStart = (id: string) => {
     setImageLoading((prev) => ({ ...prev, [id]: true }));

@@ -22,7 +22,7 @@ const isUpdateAvailable = (current: string, latest: string): boolean => {
 };
 
 export const checkForUpdates = async (): Promise<UpdateCheckResult> => {
-    const currentVersion = Constants.expoConfig?.version || "1.0.0";
+    const currentVersion = Constants.expoConfig?.version ?? "1.0.0";
     const platform = Platform.OS; // "android" | "ios"
 
     try {

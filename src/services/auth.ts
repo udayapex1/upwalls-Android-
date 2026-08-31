@@ -4,6 +4,8 @@ import * as SecureStore from "expo-secure-store";
 export const BACKEND_URL = "https://upwall-fullstack-e9qy.onrender.com"
 // export const BACKEND_URL = "https://upwall-fullstack.onrender.com"
 
+export type ProfileResult = { user: any; unauthorized?: false } | { unauthorized: true } | null;
+
 
 export const loginUser = async (
   email: string,
@@ -20,7 +22,6 @@ export const loginUser = async (
       }
     );
 
-    console.log(data)
     // 🔐 store token securely
     await SecureStore.setItemAsync("token", data.token);
     await SecureStore.setItemAsync("user", JSON.stringify(data.user));
@@ -152,14 +153,12 @@ export const getStoredAuth = async () => {
   }
 };
 
-export const getUserProfile = async (token: string) => {
+export const getUserProfile = async (token: string): Promise<ProfileResult> => {
   try {
     if (!token) {
       console.log("No token provided for profile fetch");
       return null;
     }
-
-    console.log("Fetching user profile with token:", token.substring(0, 20) + "...");
 
     const { data } = await axios.get(`${BACKEND_URL}/api/users/myProfile`, {
       headers: {
@@ -167,13 +166,11 @@ export const getUserProfile = async (token: string) => {
       },
     });
 
-    console.log("User profile API response:", JSON.stringify(data, null, 2));
 
     // Update stored user data with fresh profile data
     // Handle both direct user object or nested user object
     const userData = data?.user || data;
     if (userData) {
-      console.log("Storing user data:", JSON.stringify(userData, null, 2));
       await SecureStore.setItemAsync("user", JSON.stringify(userData));
       return { user: userData };
     }
@@ -185,6 +182,9 @@ export const getUserProfile = async (token: string) => {
       response: error.response?.data,
       status: error.response?.status,
     });
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      return { unauthorized: true };
+    }
     return null;
   }
 };

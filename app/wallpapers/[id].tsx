@@ -1,6 +1,7 @@
 import { Colors } from "@/src/constants/color";
 import { useWallpapers } from "@/src/context/WallpapersContext";
 import { Wallpaper } from "@/src/services/wallpapers";
+import { resolveImageUrl } from "@/src/utils/imageUrl";
 import { Ionicons } from "@expo/vector-icons";
 import * as FileSystem from "expo-file-system/legacy";
 import { LinearGradient } from "expo-linear-gradient";
@@ -87,7 +88,7 @@ export default function WallpaperPreview() {
     };
 
     fetchWallpaper();
-  }, [id, allWallpapers, getWallpaper]);
+  }, [id, uri, allWallpapers, getWallpaper]);
 
   const getImageUrl = () => {
     if (wallpaper) {
@@ -138,7 +139,7 @@ export default function WallpaperPreview() {
       }
 
       const fileUri =
-        FileSystem.documentDirectory + `upwalls_${id || Date.now()}_${Date.now()}.jpg`;
+        FileSystem.cacheDirectory + `upwalls_${id || Date.now()}_${Date.now()}.jpg`;
 
       const downloadResult = await FileSystem.downloadAsync(
         imageUrl,
@@ -194,7 +195,7 @@ export default function WallpaperPreview() {
 
       // First, download the image to local storage
       const fileUri =
-        FileSystem.documentDirectory + `wallpaper_temp_${Date.now()}.jpg`;
+        FileSystem.cacheDirectory + `wallpaper_temp_${Date.now()}.jpg`;
 
       console.log("Downloading wallpaper to:", fileUri);
       const downloadResult = await FileSystem.downloadAsync(imageUrl!, fileUri);
@@ -425,7 +426,7 @@ export default function WallpaperPreview() {
     }
   };
 
-  const safeProfileUrl = (wallpaper as any)?.userProfile.replace(/^(http:\/\/|https:\/\/)/, 'https://');
+  const safeProfileUrl = resolveImageUrl((wallpaper as any)?.userProfile);
 
   if (loading) {
     return (
@@ -595,7 +596,7 @@ export default function WallpaperPreview() {
           <View style={styles.infoCard}>
             <Ionicons name="information-circle-outline" size={20} color="#666" />
             <Text style={styles.infoText}>
-              Tap "Apply" to save the wallpaper and get instructions to set it as your background
+              Tap &quot;Apply&quot; to save the wallpaper and get instructions to set it as your background
             </Text>
           </View>
 
@@ -615,7 +616,7 @@ export default function WallpaperPreview() {
               <Text style={styles.sectionTitle}>Creator</Text>
               <View style={styles.creatorCard}>
                 <View style={styles.creatorLeft}>
-                  {(wallpaper as any)?.userProfile ? (
+                  {safeProfileUrl ? (
                     <Image
                       source={{ uri: safeProfileUrl }}
                       style={styles.avatar}

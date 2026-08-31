@@ -1,6 +1,6 @@
 import { Colors } from "@/src/constants/color";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Animated, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -24,6 +24,23 @@ export default function Toast({
   const insets = useSafeAreaInsets();
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(50)).current;
+
+  const hide = useCallback(() => {
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY, {
+        toValue: 50,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      if (onHide) onHide();
+    });
+  }, [onHide, opacity, translateY]);
 
   useEffect(() => {
     if (visible) {
@@ -50,24 +67,7 @@ export default function Toast({
     } else {
       hide();
     }
-  }, [visible]);
-
-  const hide = () => {
-    Animated.parallel([
-      Animated.timing(opacity, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-      Animated.timing(translateY, {
-        toValue: 50,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      if (onHide) onHide();
-    });
-  };
+  }, [duration, hide, opacity, translateY, visible]);
 
   if (!visible) return null;
 

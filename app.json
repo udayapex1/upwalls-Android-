@@ -49,7 +49,14 @@
           }
         }
       ],
-      "expo-media-library",
+      [
+        "expo-media-library",
+        {
+          "granularPermissions": ["photo"],
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save wallpapers to your photos."
+        }
+      ],
       "expo-secure-store"
     ],
     "experiments": {

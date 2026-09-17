@@ -4,6 +4,7 @@ import { Wallpaper } from "@/src/services/wallpapers";
 import { resolveImageUrl } from "@/src/utils/imageUrl";
 import { Ionicons } from "@expo/vector-icons";
 import * as FileSystem from "expo-file-system/legacy";
+import Constants from "expo-constants";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
 import * as MediaLibrary from "expo-media-library";
@@ -28,6 +29,7 @@ import QRCode from "react-native-qrcode-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
+const isExpoGo = Constants.executionEnvironment === "storeClient";
 
 export default function WallpaperPreview() {
   const params = useLocalSearchParams();
@@ -130,14 +132,6 @@ export default function WallpaperPreview() {
     try {
       setDownloading(true);
 
-      const { status } = await MediaLibrary.requestPermissionsAsync();
-
-      if (status !== "granted") {
-        Alert.alert("Permission Required", "Gallery access needed to save wallpapers");
-        setDownloading(false);
-        return;
-      }
-
       const fileUri =
         FileSystem.cacheDirectory + `upwalls_${id || Date.now()}_${Date.now()}.jpg`;
 
@@ -145,6 +139,19 @@ export default function WallpaperPreview() {
         imageUrl,
         fileUri
       );
+
+      // Expo Go cannot request Android media permissions. Use the system share
+      // sheet there so the user can save the image from Photos/Gallery.
+      if (isExpoGo) {
+        await Sharing.shareAsync(downloadResult.uri);
+        return;
+      }
+
+      const { status } = await MediaLibrary.requestPermissionsAsync(false, ["photo"]);
+      if (status !== "granted") {
+        Alert.alert("Permission Required", "Gallery access needed to save wallpapers");
+        return;
+      }
 
       await MediaLibrary.createAssetAsync(downloadResult.uri);
 
@@ -202,9 +209,21 @@ export default function WallpaperPreview() {
 
       console.log("Download result:", downloadResult);
 
+      if (isExpoGo) {
+        Alert.alert(
+          "Ready to apply",
+          "Expo Go cannot write directly to your gallery. Use the share sheet to save this image, then set it from your Photos or Gallery app.",
+          [
+            { text: "Share image", onPress: () => Sharing.shareAsync(downloadResult.uri) },
+            { text: "OK", style: "cancel" },
+          ]
+        );
+        return;
+      }
+
       if (Platform.OS === "android") {
         // For Android, we need to save to gallery first, then guide user
-        const { status } = await MediaLibrary.requestPermissionsAsync();
+        const { status } = await MediaLibrary.requestPermissionsAsync(false, ["photo"]);
 
         if (status !== "granted") {
           Alert.alert(
@@ -263,7 +282,7 @@ export default function WallpaperPreview() {
         );
       } else {
         // For iOS
-        const { status } = await MediaLibrary.requestPermissionsAsync();
+        const { status } = await MediaLibrary.requestPermissionsAsync(false, ["photo"]);
 
         if (status !== "granted") {
           Alert.alert(
@@ -390,7 +409,7 @@ export default function WallpaperPreview() {
         return;
       }
 
-      const { status } = await MediaLibrary.requestPermissionsAsync();
+      const { status } = await MediaLibrary.requestPermissionsAsync(false, ["photo"]);
       if (status !== "granted") {
         Alert.alert("Permission Required", "Gallery access needed to save QR code");
         return;

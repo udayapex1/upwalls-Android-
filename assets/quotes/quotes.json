@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "q001",
+    "text": "The only way to do great work is to love what you do.",
+    "author": "Steve Jobs"
+  },
+  {
+    "id": "q002",
+    "text": "Believe you can and you're halfway there.",
+    "author": "Theodore Roosevelt"
+  },
+  {
+    "id": "q003",
+    "text": "It does not matter how slowly you go as long as you do not stop.",
+    "author": "Confucius"
+  },
+  {
+    "id": "q004",
+    "text": "Whether you think you can or you think you can't, you're right.",
+    "author": "Henry Ford"
+  },
+  {
+    "id": "q005",
+    "text": "The future belongs to those who believe in the beauty of their dreams.",
+    "author": "Eleanor Roosevelt"
+  },
+  {
+    "id": "q006",
+    "text": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    "author": "Winston Churchill"
+  },
+  {
+    "id": "q007",
+    "text": "In the middle of difficulty lies opportunity.",
+    "author": "Albert Einstein"
+  },
+  {
+    "id": "q008",
+    "text": "You miss 100% of the shots you don't take.",
+    "author": "Wayne Gretzky"
+  },
+  {
+    "id": "q009",
+    "text": "The best way to predict the future is to create it.",
+    "author": "Abraham Lincoln"
+  },
+  {
+    "id": "q010",
+    "text": "Life is what happens when you're busy making other plans.",
+    "author": "John Lennon"
+  },
+  {
+    "id": "q011",
+    "text": "The only limit to our realization of tomorrow will be our doubts of today.",
+    "author": "Franklin D. Roosevelt"
+  },
+  {
+    "id": "q012",
+    "text": "Do not wait to strike till the iron is hot, but make it hot by striking.",
+    "author": "William Butler Yeats"
+  },
+  {
+    "id": "q013",
+    "text": "It is never too late to be what you might have been.",
+    "author": "George Eliot"
+  },
+  {
+    "id": "q014",
+    "text": "Turn your wounds into wisdom.",
+    "author": "Oprah Winfrey"
+  },
+  {
+    "id": "q015",
+    "text": "Everything you've ever wanted is on the other side of fear.",
+    "author": "George Addair"
+  },
+  {
+    "id": "q016",
+    "text": "Fall seven times, stand up eight.",
+    "author": "Japanese Proverb"
+  },
+  {
+    "id": "q017",
+    "text": "A river cuts through rock, not because of its power, but its persistence.",
+    "author": "Jim Watkins"
+  },
+  {
+    "id": "q018",
+    "text": "The journey of a thousand miles begins with a single step.",
+    "author": "Lao Tzu"
+  },
+  {
+    "id": "q019",
+    "text": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+    "author": "Zig Ziglar"
+  },
+  {
+    "id": "q020",
+    "text": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+    "author": "Thomas Edison"
+  },
+  {
+    "id": "q021",
+    "text": "The mind is everything. What you think you become.",
+    "author": "Buddha"
+  },
+  {
+    "id": "q022",
+    "text": "An unexamined life is not worth living.",
+    "author": "Socrates"
+  },
+  {
+    "id": "q023",
+    "text": "He who has a why to live can bear almost any how.",
+    "author": "Friedrich Nietzsche"
+  },
+  {
+    "id": "q024",
+    "text": "Waste no more time arguing about what a good man should be. Be one.",
+    "author": "Marcus Aurelius"
+  },
+  {
+    "id": "q025",
+    "text": "It is not the man who has too little, but the man who craves more, that is poor.",
+    "author": "Seneca"
+  },
+  {
+    "id": "q026",
+    "text": "The unexamined life is not worth living, but the unlived life is not worth examining either.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q027",
+    "text": "We suffer more often in imagination than in reality.",
+    "author": "Seneca"
+  },
+  {
+    "id": "q028",
+    "text": "Man is not worried by real problems so much as by his imagined anxieties about real problems.",
+    "author": "Epictetus"
+  },
+  {
+    "id": "q029",
+    "text": "You have power over your mind, not outside events. Realize this, and you will find strength.",
+    "author": "Marcus Aurelius"
+  },
+  {
+    "id": "q030",
+    "text": "Difficulties strengthen the mind, as labor does the body.",
+    "author": "Seneca"
+  },
+  {
+    "id": "q031",
+    "text": "Continuous effort, not strength or intelligence, is the key to unlocking our potential.",
+    "author": "Winston Churchill"
+  },
+  {
+    "id": "q032",
+    "text": "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty.",
+    "author": "Winston Churchill"
+  },
+  {
+    "id": "q033",
+    "text": "Twenty years from now you will be more disappointed by the things you didn't do.",
+    "author": "Mark Twain"
+  },
+  {
+    "id": "q034",
+    "text": "The secret of getting ahead is getting started.",
+    "author": "Mark Twain"
+  },
+  {
+    "id": "q035",
+    "text": "Kindness is a language which the deaf can hear and the blind can see.",
+    "author": "Mark Twain"
+  },
+  {
+    "id": "q036",
+    "text": "Courage is not the absence of fear, but the triumph over it.",
+    "author": "Nelson Mandela"
+  },
+  {
+    "id": "q037",
+    "text": "It always seems impossible until it's done.",
+    "author": "Nelson Mandela"
+  },
+  {
+    "id": "q038",
+    "text": "Education is the most powerful weapon which you can use to change the world.",
+    "author": "Nelson Mandela"
+  },
+  {
+    "id": "q039",
+    "text": "Try not to become a person of success, but rather try to become a person of value.",
+    "author": "Albert Einstein"
+  },
+  {
+    "id": "q040",
+    "text": "Imagination is more important than knowledge.",
+    "author": "Albert Einstein"
+  },
+  {
+    "id": "q041",
+    "text": "Logic will get you from A to B. Imagination will take you everywhere.",
+    "author": "Albert Einstein"
+  },
+  {
+    "id": "q042",
+    "text": "A person who never made a mistake never tried anything new.",
+    "author": "Albert Einstein"
+  },
+  {
+    "id": "q043",
+    "text": "The only true wisdom is in knowing you know nothing.",
+    "author": "Socrates"
+  },
+  {
+    "id": "q044",
+    "text": "To know, is to know that you know nothing. That is the meaning of true knowledge.",
+    "author": "Confucius"
+  },
+  {
+    "id": "q045",
+    "text": "Our greatest glory is not in never falling, but in rising every time we fall.",
+    "author": "Confucius"
+  },
+  {
+    "id": "q046",
+    "text": "By three methods we may learn wisdom: reflection, imitation, and experience.",
+    "author": "Confucius"
+  },
+  {
+    "id": "q047",
+    "text": "Choose a job you love, and you will never have to work a day in your life.",
+    "author": "Confucius"
+  },
+  {
+    "id": "q048",
+    "text": "Not until we are lost do we begin to understand ourselves.",
+    "author": "Henry David Thoreau"
+  },
+  {
+    "id": "q049",
+    "text": "Go confidently in the direction of your dreams. Live the life you have imagined.",
+    "author": "Henry David Thoreau"
+  },
+  {
+    "id": "q050",
+    "text": "Things do not change; we change.",
+    "author": "Henry David Thoreau"
+  },
+  {
+    "id": "q051",
+    "text": "The two most important days in your life are the day you are born and the day you find out why.",
+    "author": "Mark Twain"
+  },
+  {
+    "id": "q052",
+    "text": "Do what you can, with what you have, where you are.",
+    "author": "Theodore Roosevelt"
+  },
+  {
+    "id": "q053",
+    "text": "Nothing in life is to be feared, it is only to be understood.",
+    "author": "Marie Curie"
+  },
+  {
+    "id": "q054",
+    "text": "I never see what has been done; I only see what remains to be done.",
+    "author": "Marie Curie"
+  },
+  {
+    "id": "q055",
+    "text": "Be the change that you wish to see in the world.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "id": "q056",
+    "text": "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "id": "q057",
+    "text": "The weak can never forgive. Forgiveness is the attribute of the strong.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "id": "q058",
+    "text": "A ship in harbor is safe, but that is not what ships are built for.",
+    "author": "John A. Shedd"
+  },
+  {
+    "id": "q059",
+    "text": "The best time to plant a tree was 20 years ago. The second best time is now.",
+    "author": "Chinese Proverb"
+  },
+  {
+    "id": "q060",
+    "text": "When the winds of change blow, some people build walls and others build windmills.",
+    "author": "Chinese Proverb"
+  },
+  {
+    "id": "q061",
+    "text": "He who is not courageous enough to take risks will accomplish nothing in life.",
+    "author": "Muhammad Ali"
+  },
+  {
+    "id": "q062",
+    "text": "Float like a butterfly, sting like a bee.",
+    "author": "Muhammad Ali"
+  },
+  {
+    "id": "q063",
+    "text": "Don't count the days, make the days count.",
+    "author": "Muhammad Ali"
+  },
+  {
+    "id": "q064",
+    "text": "Impossible is just a big word thrown around by small men.",
+    "author": "Muhammad Ali"
+  },
+  {
+    "id": "q065",
+    "text": "If you can dream it, you can do it.",
+    "author": "Walt Disney"
+  },
+  {
+    "id": "q066",
+    "text": "The way to get started is to quit talking and begin doing.",
+    "author": "Walt Disney"
+  },
+  {
+    "id": "q067",
+    "text": "All our dreams can come true if we have the courage to pursue them.",
+    "author": "Walt Disney"
+  },
+  {
+    "id": "q068",
+    "text": "It's kind of fun to do the impossible.",
+    "author": "Walt Disney"
+  },
+  {
+    "id": "q069",
+    "text": "Your time is limited, so don't waste it living someone else's life.",
+    "author": "Steve Jobs"
+  },
+  {
+    "id": "q070",
+    "text": "Innovation distinguishes between a leader and a follower.",
+    "author": "Steve Jobs"
+  },
+  {
+    "id": "q071",
+    "text": "Stay hungry, stay foolish.",
+    "author": "Steve Jobs"
+  },
+  {
+    "id": "q072",
+    "text": "Quality is more important than quantity. One home run is much better than two doubles.",
+    "author": "Steve Jobs"
+  },
+  {
+    "id": "q073",
+    "text": "The people who are crazy enough to think they can change the world are the ones who do.",
+    "author": "Steve Jobs"
+  },
+  {
+    "id": "q074",
+    "text": "Your work is going to fill a large part of your life, so do work that matters to you.",
+    "author": "Steve Jobs"
+  },
+  {
+    "id": "q075",
+    "text": "It is our choices that show what we truly are, far more than our abilities.",
+    "author": "J.K. Rowling"
+  },
+  {
+    "id": "q076",
+    "text": "Happiness can be found even in the darkest of times, if one only remembers to turn on the light.",
+    "author": "J.K. Rowling"
+  },
+  {
+    "id": "q077",
+    "text": "We do not have to sacrifice a strong intellect to have a strong heart.",
+    "author": "J.K. Rowling"
+  },
+  {
+    "id": "q078",
+    "text": "Not all those who wander are lost.",
+    "author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "q079",
+    "text": "Even the smallest person can change the course of the future.",
+    "author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "q080",
+    "text": "All we have to decide is what to do with the time that is given us.",
+    "author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "q081",
+    "text": "The world breaks everyone, and afterward, some are strong at the broken places.",
+    "author": "Ernest Hemingway"
+  },
+  {
+    "id": "q082",
+    "text": "Courage is grace under pressure.",
+    "author": "Ernest Hemingway"
+  },
+  {
+    "id": "q083",
+    "text": "There is nothing to writing. All you do is sit down at a typewriter and bleed.",
+    "author": "Ernest Hemingway"
+  },
+  {
+    "id": "q084",
+    "text": "To live is the rarest thing in the world. Most people exist, that is all.",
+    "author": "Oscar Wilde"
+  },
+  {
+    "id": "q085",
+    "text": "Be yourself; everyone else is already taken.",
+    "author": "Oscar Wilde"
+  },
+  {
+    "id": "q086",
+    "text": "We are all in the gutter, but some of us are looking at the stars.",
+    "author": "Oscar Wilde"
+  },
+  {
+    "id": "q087",
+    "text": "The truth is rarely pure and never simple.",
+    "author": "Oscar Wilde"
+  },
+  {
+    "id": "q088",
+    "text": "Whatever you are, be a good one.",
+    "author": "Abraham Lincoln"
+  },
+  {
+    "id": "q089",
+    "text": "I am a slow walker, but I never walk back.",
+    "author": "Abraham Lincoln"
+  },
+  {
+    "id": "q090",
+    "text": "Give me six hours to chop down a tree and I will spend the first four sharpening the axe.",
+    "author": "Abraham Lincoln"
+  },
+  {
+    "id": "q091",
+    "text": "Discipline is the bridge between goals and accomplishment.",
+    "author": "Jim Rohn"
+  },
+  {
+    "id": "q092",
+    "text": "Either you run the day, or the day runs you.",
+    "author": "Jim Rohn"
+  },
+  {
+    "id": "q093",
+    "text": "Motivation is what gets you started. Habit is what keeps you going.",
+    "author": "Jim Rohn"
+  },
+  {
+    "id": "q094",
+    "text": "You don't have to be great to start, but you have to start to be great.",
+    "author": "Zig Ziglar"
+  },
+  {
+    "id": "q095",
+    "text": "A goal properly set is halfway reached.",
+    "author": "Zig Ziglar"
+  },
+  {
+    "id": "q096",
+    "text": "The elevator to success is out of order. You'll have to use the stairs, one step at a time.",
+    "author": "Joe Girard"
+  },
+  {
+    "id": "q097",
+    "text": "Perseverance is not a long race; it is many short races one after the other.",
+    "author": "Walter Elliot"
+  },
+  {
+    "id": "q098",
+    "text": "Small daily improvements are the key to staggering long-term results.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q099",
+    "text": "Discipline is choosing between what you want now and what you want most.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q100",
+    "text": "You don't find the light at the end of the tunnel. You build it, one brick at a time.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q101",
+    "text": "Consistency is what transforms average into excellence.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q102",
+    "text": "The pain of discipline weighs ounces, the pain of regret weighs tons.",
+    "author": "Jim Rohn"
+  },
+  {
+    "id": "q103",
+    "text": "Focus on progress, not perfection.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q104",
+    "text": "Every master was once a disaster.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q105",
+    "text": "The comeback is always stronger than the setback.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q106",
+    "text": "What seems impossible today will one day become your warm-up.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q107",
+    "text": "Silence your doubts and let your work speak.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q108",
+    "text": "Sharpen your skills while others sharpen their excuses.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q109",
+    "text": "Grind in silence, let success make the noise.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q110",
+    "text": "Build in the dark, shine in the light.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q111",
+    "text": "Small steps daily lead to big changes yearly.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q112",
+    "text": "Discomfort today is strength tomorrow.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q113",
+    "text": "Your only competition is who you were yesterday.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q114",
+    "text": "Patience and persistence outlast talent that quits.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q115",
+    "text": "The version of you that gives up isn't the one you're trying to become.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q116",
+    "text": "Effort compounds quietly before it shows loudly.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q117",
+    "text": "Stay ready, so you don't have to get ready.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q118",
+    "text": "You are one decision away from a completely different life.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q119",
+    "text": "Growth begins the moment you stop making excuses.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q120",
+    "text": "Discipline outlasts motivation every single time.",
+    "author": "Anonymous"
+  },
+  {
+    "id": "q121",
+    "text": "I am Iron Man.",
+    "author": "Tony Stark"
+  },
+  {
+    "id": "q122",
+    "text": "With great power comes great responsibility.",
+    "author": "Uncle Ben"
+  },
+  {
+    "id": "q123",
+    "text": "I can do this all day.",
+    "author": "Steve Rogers"
+  },
+  {
+    "id": "q124",
+    "text": "Whatever it takes.",
+    "author": "Steve Rogers"
+  },
+  {
+    "id": "q125",
+    "text": "I love you 3000.",
+    "author": "Tony Stark / Morgan Stark"
+  },
+  {
+    "id": "q126",
+    "text": "Avengers, assemble.",
+    "author": "Steve Rogers"
+  },
+  {
+    "id": "q127",
+    "text": "I'm always angry.",
+    "author": "Bruce Banner"
+  },
+  {
+    "id": "q128",
+    "text": "Dormammu, I've come to bargain.",
+    "author": "Doctor Strange"
+  },
+  {
+    "id": "q129",
+    "text": "Mr. Stark, I don't feel so good.",
+    "author": "Peter Parker"
+  },
+  {
+    "id": "q130",
+    "text": "It's not about how much we lost. It's about how much we have left.",
+    "author": "Tony Stark"
+  },
+  {
+    "id": "q131",
+    "text": "Part of the journey is the end.",
+    "author": "Tony Stark"
+  },
+  {
+    "id": "q132",
+    "text": "I could do this all day.",
+    "author": "Steve Rogers"
+  },
+  {
+    "id": "q133",
+    "text": "That's my secret, Cap. I'm always angry.",
+    "author": "Bruce Banner"
+  },
+  {
+    "id": "q134",
+    "text": "A man who has everything and nothing.",
+    "author": "Vision"
+  },
+  {
+    "id": "q135",
+    "text": "Even if you get killed, just walk it off.",
+    "author": "Nick Fury"
+  },
+  {
+    "id": "q136",
+    "text": "I am inevitable.",
+    "author": "Thanos"
+  },
+  {
+    "id": "q137",
+    "text": "And I am... Iron Man.",
+    "author": "Tony Stark"
+  },
+  {
+    "id": "q138",
+    "text": "Wakanda forever!",
+    "author": "T'Challa / Okoye"
+  },
+  {
+    "id": "q139",
+    "text": "The city is flying and we're fighting an army of robots, and I have a bow and arrow.",
+    "author": "Clint Barton"
+  },
+  {
+    "id": "q140",
+    "text": "I know, I know. In the future, avoid the calamari.",
+    "author": "Steve Rogers"
+  },
+  {
+    "id": "q141",
+    "text": "You get hurt, hurt 'em back. You get killed... walk it off.",
+    "author": "Nick Fury"
+  },
+  {
+    "id": "q142",
+    "text": "Genius, billionaire, playboy, philanthropist.",
+    "author": "Tony Stark"
+  },
+  {
+    "id": "q143",
+    "text": "Sometimes you can't win.",
+    "author": "Vision"
+  },
+  {
+    "id": "q144",
+    "text": "Reality is often disappointing.",
+    "author": "Thanos"
+  },
+  {
+    "id": "q145",
+    "text": "I feel like there's a woman in the room.",
+    "author": "Peter Quill"
+  },
+  {
+    "id": "q146",
+    "text": "We are Groot.",
+    "author": "Groot"
+  },
+  {
+    "id": "q147",
+    "text": "I am Groot.",
+    "author": "Groot"
+  },
+  {
+    "id": "q148",
+    "text": "Legolas! What do your elf eyes see?",
+    "author": "Peter Quill"
+  },
+  {
+    "id": "q149",
+    "text": "Dance-off, bro. Me and you.",
+    "author": "Peter Quill"
+  },
+  {
+    "id": "q150",
+    "text": "Some people call me... Maurice.",
+    "author": "Groot's crew reference"
+  },
+  {
+    "id": "q151",
+    "text": "Hulk smash.",
+    "author": "Hulk"
+  },
+  {
+    "id": "q152",
+    "text": "Puny god.",
+    "author": "Hulk"
+  },
+  {
+    "id": "q153",
+    "text": "I'm not a hero.",
+    "author": "Tony Stark"
+  },
+  {
+    "id": "q154",
+    "text": "Everyone fails at who they're supposed to be. The measure of a person, of a hero, is how well they succeed at being who they are.",
+    "author": "Nick Fury"
+  },
+  {
+    "id": "q155",
+    "text": "Higher, further, faster, baby.",
+    "author": "Carol Danvers"
+  },
+  {
+    "id": "q156",
+    "text": "I'm just a kid from Brooklyn.",
+    "author": "Steve Rogers"
+  },
+  {
+    "id": "q157",
+    "text": "Trust me.",
+    "author": "Nick Fury"
+  },
+  {
+    "id": "q158",
+    "text": "The hardest choices require the strongest wills.",
+    "author": "Thanos"
+  },
+  {
+    "id": "q159",
+    "text": "I want you to know, this is a friendly conversation.",
+    "author": "Killmonger"
+  },
+  {
+    "id": "q160",
+    "text": "Is he not the most glorious thing you have ever seen?",
+    "author": "Thor"
+  },
+  {
+    "id": "q161",
+    "text": "May the Force be with you.",
+    "author": "Obi-Wan Kenobi"
+  },
+  {
+    "id": "q162",
+    "text": "I'll be back.",
+    "author": "The Terminator"
+  },
+  {
+    "id": "q163",
+    "text": "Here's looking at you, kid.",
+    "author": "Rick Blaine"
+  },
+  {
+    "id": "q164",
+    "text": "Frankly, my dear, I don't give a damn.",
+    "author": "Rhett Butler"
+  },
+  {
+    "id": "q165",
+    "text": "You can't handle the truth!",
+    "author": "Col. Jessup"
+  },
+  {
+    "id": "q166",
+    "text": "I'm gonna make him an offer he can't refuse.",
+    "author": "Vito Corleone"
+  },
+  {
+    "id": "q167",
+    "text": "Why so serious?",
+    "author": "The Joker"
+  },
+  {
+    "id": "q168",
+    "text": "Houston, we have a problem.",
+    "author": "Jim Lovell"
+  },
+  {
+    "id": "q169",
+    "text": "Life is like a box of chocolates.",
+    "author": "Forrest Gump"
+  },
+  {
+    "id": "q170",
+    "text": "I feel the need — the need for speed.",
+    "author": "Maverick"
+  },
+  {
+    "id": "q171",
+    "text": "There's no place like home.",
+    "author": "Dorothy Gale"
+  },
+  {
+    "id": "q172",
+    "text": "You had me at hello.",
+    "author": "Dorothy Boyd"
+  },
+  {
+    "id": "q173",
+    "text": "Show me the money!",
+    "author": "Rod Tidwell"
+  },
+  {
+    "id": "q174",
+    "text": "I see dead people.",
+    "author": "Cole Sear"
+  },
+  {
+    "id": "q175",
+    "text": "My precious.",
+    "author": "Gollum"
+  },
+  {
+    "id": "q176",
+    "text": "One does not simply walk into Mordor.",
+    "author": "Boromir"
+  },
+  {
+    "id": "q177",
+    "text": "You shall not pass!",
+    "author": "Gandalf"
+  },
+  {
+    "id": "q178",
+    "text": "Say hello to my little friend!",
+    "author": "Tony Montana"
+  },
+  {
+    "id": "q179",
+    "text": "Bond. James Bond.",
+    "author": "James Bond"
+  },
+  {
+    "id": "q180",
+    "text": "Here's Johnny!",
+    "author": "Jack Torrance"
+  },
+  {
+    "id": "q181",
+    "text": "I am your father.",
+    "author": "Darth Vader"
+  },
+  {
+    "id": "q182",
+    "text": "Do or do not. There is no try.",
+    "author": "Yoda"
+  },
+  {
+    "id": "q183",
+    "text": "Just keep swimming.",
+    "author": "Dory"
+  },
+  {
+    "id": "q184",
+    "text": "To infinity and beyond!",
+    "author": "Buzz Lightyear"
+  },
+  {
+    "id": "q185",
+    "text": "Hasta la vista, baby.",
+    "author": "The Terminator"
+  },
+  {
+    "id": "q186",
+    "text": "Every man dies, not every man really lives.",
+    "author": "William Wallace"
+  },
+  {
+    "id": "q187",
+    "text": "They may take our lives, but they'll never take our freedom!",
+    "author": "William Wallace"
+  },
+  {
+    "id": "q188",
+    "text": "Keep your friends close, but your enemies closer.",
+    "author": "Michael Corleone"
+  },
+  {
+    "id": "q189",
+    "text": "It was beauty killed the beast.",
+    "author": "Carl Denham"
+  },
+  {
+    "id": "q190",
+    "text": "Carpe diem. Seize the day.",
+    "author": "John Keating"
+  },
+  {
+    "id": "q191",
+    "text": "I'm the king of the world!",
+    "author": "Jack Dawson"
+  },
+  {
+    "id": "q192",
+    "text": "A long time ago in a galaxy far, far away…",
+    "author": "opening crawl"
+  },
+  {
+    "id": "q193",
+    "text": "We're gonna need a bigger boat.",
+    "author": "Brody"
+  },
+  {
+    "id": "q194",
+    "text": "Elementary, my dear Watson.",
+    "author": "Sherlock Holmes"
+  },
+  {
+    "id": "q195",
+    "text": "Roads? Where we're going, we don't need roads.",
+    "author": "Doc Brown"
+  },
+  {
+    "id": "q196",
+    "text": "Great Scott!",
+    "author": "Doc Brown"
+  },
+  {
+    "id": "q197",
+    "text": "Nobody puts Baby in a corner.",
+    "author": "Johnny Castle"
+  },
+  {
+    "id": "q198",
+    "text": "The first rule of Fight Club is: you do not talk about Fight Club.",
+    "author": "Tyler Durden"
+  },
+  {
+    "id": "q199",
+    "text": "I feel the need to remind you: this is your life, and it's ending one minute at a time.",
+    "author": "Tyler Durden"
+  },
+  {
+    "id": "q200",
+    "text": "It's alive! It's alive!",
+    "author": "Dr. Frankenstein"
+  },
+  {
+    "id": "q201",
+    "text": "Kitne aadmi the?",
+    "author": "Gabbar Singh"
+  },
+  {
+    "id": "q202",
+    "text": "Mogambo khush hua.",
+    "author": "Mogambo"
+  },
+  {
+    "id": "q203",
+    "text": "Don ko pakadna mushkil hi nahi, namumkin hai.",
+    "author": "Don"
+  },
+  {
+    "id": "q204",
+    "text": "Picture abhi baaki hai mere dost.",
+    "author": "Om"
+  },
+  {
+    "id": "q205",
+    "text": "Bade bade deshon mein aisi choti choti baatein hoti rehti hain.",
+    "author": "Raj"
+  },
+  {
+    "id": "q206",
+    "text": "Sara jahaan hamara.",
+    "author": "Rahul"
+  },
+  {
+    "id": "q207",
+    "text": "Zindagi badi honi chahiye, lambi nahi.",
+    "author": "Anand"
+  },
+  {
+    "id": "q208",
+    "text": "Rishtey mein toh hum tumhare baap lagte hain.",
+    "author": "Vijay Dinanath Chauhan"
+  },
+  {
+    "id": "q209",
+    "text": "All izz well.",
+    "author": "Rancho"
+  },
+  {
+    "id": "q210",
+    "text": "Kabhi kabhi jeetne ke liye kuch haarna bhi padta hai.",
+    "author": "Chak De India dialogue theme"
+  },
+  {
+    "id": "q211",
+    "text": "Sattar minute, Sattar minute hain aapke paas.",
+    "author": "Kabir Khan"
+  },
+  {
+    "id": "q212",
+    "text": "Bhaag DK Bose.",
+    "author": "line"
+  },
+  {
+    "id": "q213",
+    "text": "Jaa Simran jaa, jee le apni zindagi.",
+    "author": "Baldev Singh"
+  },
+  {
+    "id": "q214",
+    "text": "Mere paas maa hai.",
+    "author": "Vijay"
+  },
+  {
+    "id": "q215",
+    "text": "Don't underestimate the power of a common man.",
+    "author": "Chandu (paraphrase)"
+  },
+  {
+    "id": "q216",
+    "text": "Life mein kabhi kabhi tension leke tissue nahi lena chahiye, isse motion tight ho jata hai.",
+    "author": "Circuit"
+  },
+  {
+    "id": "q217",
+    "text": "Apun hi apun ka boss.",
+    "author": "Munna Bhai"
+  },
+  {
+    "id": "q218",
+    "text": "Kya baat hai!",
+    "author": "recurring exclamation"
+  },
+  {
+    "id": "q219",
+    "text": "Kaanta laga.",
+    "author": "popular dialogue reference"
+  },
+  {
+    "id": "q220",
+    "text": "Yeh dosti hum nahi todenge.",
+    "author": "Jai & Veeru"
+  },
+  {
+    "id": "q221",
+    "text": "Basanti, in kutto ke saamne mat naachna.",
+    "author": "Veeru"
+  },
+  {
+    "id": "q222",
+    "text": "Mere paas gaadi hai, bangla hai, bank balance hai... tumhare paas kya hai?",
+    "author": "Vijay"
+  },
+  {
+    "id": "q223",
+    "text": "Kya tumhe pata hai duniya ka sabse mehenga perfume kaunsa hai? Khoon.",
+    "author": "Kancha"
+  },
+  {
+    "id": "q224",
+    "text": "Aaj mera dil bola tumse kuch keh doon.",
+    "author": "recurring Bollywood theme"
+  },
+  {
+    "id": "q225",
+    "text": "Bade bade shehron mein aisi chhoti chhoti baatein hoti rehti hai, senorita.",
+    "author": "Raj"
+  },
+  {
+    "id": "q226",
+    "text": "I hate tears, and mostly, I hate the people who cause them.",
+    "author": "Rahul"
+  },
+  {
+    "id": "q227",
+    "text": "Tumhara naam kya hai basanti?",
+    "author": "Veeru"
+  },
+  {
+    "id": "q228",
+    "text": "Log kehte hain ke main sheher ka sabse bada rowdy hoon.",
+    "author": "Rowdy dialogue trope"
+  },
+  {
+    "id": "q229",
+    "text": "Aata majhi satakli.",
+    "author": "Chulbul Pandey"
+  },
+  {
+    "id": "q230",
+    "text": "Ek baar jo maine commitment kar di, toh main apne aap ki bhi nahi sunta.",
+    "author": "Chulbul Pandey"
+  },
+  {
+    "id": "q231",
+    "text": "Thappad se dar nahi lagta sahab, pyaar se lagta hai.",
+    "author": "Chulbul Pandey"
+  },
+  {
+    "id": "q232",
+    "text": "Rishtey mein toh hum tumhare baap lagte hain, naam hai Shahenshah.",
+    "author": "Vijay Dinanath Chauhan"
+  },
+  {
+    "id": "q233",
+    "text": "Jab tak hai jaan.",
+    "author": "recurring Bollywood theme"
+  },
+  {
+    "id": "q234",
+    "text": "Bhai apna toh motto hai — help ho ya na ho, hurt kabhi mat karna.",
+    "author": "Munna Bhai"
+  },
+  {
+    "id": "q235",
+    "text": "Sabki life mein ek baar toh emotional atyachar hota hai.",
+    "author": "Emotional Atyachar theme"
+  },
+  {
+    "id": "q236",
+    "text": "Andar ki baat hai, poora system hi sadaa hua hai.",
+    "author": "Rang De Basanti theme (paraphrase)"
+  },
+  {
+    "id": "q237",
+    "text": "Chak de fatte.",
+    "author": "expression popularized post Chak De! India"
+  },
+  {
+    "id": "q238",
+    "text": "Tension lene ka nahi, sirf dene ka.",
+    "author": "Circuit"
+  },
+  {
+    "id": "q239",
+    "text": "Bahut yaadein hain wahan...",
+    "author": "sentimental Bollywood trope line"
+  },
+  {
+    "id": "q240",
+    "text": "Apna time aayega.",
+    "author": "Murad"
+  },
+  {
+    "id": "q241",
+    "text": "Believe it!",
+    "author": "Naruto Uzumaki"
+  },
+  {
+    "id": "q242",
+    "text": "I'm gonna be the Pirate King!",
+    "author": "Monkey D. Luffy"
+  },
+  {
+    "id": "q243",
+    "text": "Plus Ultra!",
+    "author": "All Might"
+  },
+  {
+    "id": "q244",
+    "text": "I am the bone of my sword.",
+    "author": "Emiya Shirou"
+  },
+  {
+    "id": "q245",
+    "text": "If you don't take risks, you can't create a future.",
+    "author": "Monkey D. Luffy"
+  },
+  {
+    "id": "q246",
+    "text": "People's dreams... never end!",
+    "author": "Marshall D. Teach"
+  },
+  {
+    "id": "q247",
+    "text": "The world isn't perfect. But it's there for us, doing the best it can.",
+    "author": "Roy Mustang"
+  },
+  {
+    "id": "q248",
+    "text": "A lesson without pain is meaningless.",
+    "author": "Edward Elric"
+  },
+  {
+    "id": "q249",
+    "text": "I'll leave tomorrow's problems to tomorrow's me.",
+    "author": "Saitama"
+  },
+  {
+    "id": "q250",
+    "text": "Power comes in response to a need, not a desire.",
+    "author": "Goku"
+  },
+  {
+    "id": "q251",
+    "text": "I am justice!",
+    "author": "Light Yagami"
+  },
+  {
+    "id": "q252",
+    "text": "The moment you think of giving up, think of the reason why you held on so long.",
+    "author": "Natsu Dragneel"
+  },
+  {
+    "id": "q253",
+    "text": "It's not the face that makes someone a monster; it's the choices they make with their lives.",
+    "author": "Naruto Uzumaki"
+  },
+  {
+    "id": "q254",
+    "text": "I want to be strong enough to protect my precious people.",
+    "author": "Naruto Uzumaki"
+  },
+  {
+    "id": "q255",
+    "text": "Hard work is what makes your dreams come true.",
+    "author": "Rock Lee"
+  },
+  {
+    "id": "q256",
+    "text": "Whatever you lose, you'll find it again. But what you throw away you'll never get back.",
+    "author": "Kenshin Himura"
+  },
+  {
+    "id": "q257",
+    "text": "I'll take a potato chip... and eat it!",
+    "author": "Light Yagami"
+  },
+  {
+    "id": "q258",
+    "text": "Get a grip and move forward.",
+    "author": "Levi Ackerman"
+  },
+  {
+    "id": "q259",
+    "text": "If you win, you live. If you lose, you die. If you don't fight, you can't win.",
+    "author": "Eren Yeager"
+  },
+  {
+    "id": "q260",
+    "text": "The world is cruel, but also very beautiful.",
+    "author": "Mikasa Ackerman"
+  },
+  {
+    "id": "q261",
+    "text": "Keep moving forward.",
+    "author": "Edward Elric"
+  },
+  {
+    "id": "q262",
+    "text": "There is no such thing as a painless lesson.",
+    "author": "Alphonse Elric"
+  },
+  {
+    "id": "q263",
+    "text": "I don't want to conquer anything. I just think the world with too many rules isn't any fun.",
+    "author": "Monkey D. Luffy"
+  },
+  {
+    "id": "q264",
+    "text": "Fear is not evil. It tells you what your weakness is.",
+    "author": "Gildarts Clive"
+  },
+  {
+    "id": "q265",
+    "text": "A dropout will beat a genius through hard work.",
+    "author": "Rock Lee"
+  },
+  {
+    "id": "q266",
+    "text": "In this world, wherever there is light, there are also shadows.",
+    "author": "Kakashi Hatake"
+  },
+  {
+    "id": "q267",
+    "text": "Those who break the rules are scum, but those who abandon their friends are worse than scum.",
+    "author": "Kakashi Hatake"
+  },
+  {
+    "id": "q268",
+    "text": "I'll become Hokage, and then you'll have to acknowledge me!",
+    "author": "Naruto Uzumaki"
+  },
+  {
+    "id": "q269",
+    "text": "The only ones who should kill are those who are prepared to be killed.",
+    "author": "Lelouch Lamperouge"
+  },
+  {
+    "id": "q270",
+    "text": "If you cannot see a person's true feelings, you'll see hell.",
+    "author": "Lelouch Lamperouge"
+  },
+  {
+    "id": "q271",
+    "text": "I reject my humanity, JoJo!",
+    "author": "Dio Brando"
+  },
+  {
+    "id": "q272",
+    "text": "Yare yare daze.",
+    "author": "Jotaro Kujo"
+  },
+  {
+    "id": "q273",
+    "text": "It's not about whether I can or not — I have to.",
+    "author": "Izuku Midoriya"
+  },
+  {
+    "id": "q274",
+    "text": "A hero is someone who keeps moving forward no matter what.",
+    "author": "Izuku Midoriya"
+  },
+  {
+    "id": "q275",
+    "text": "Go beyond! Plus Ultra!",
+    "author": "All Might"
+  },
+  {
+    "id": "q276",
+    "text": "I want to be the strongest so I can protect the people who matter to me.",
+    "author": "Ichigo Kurosaki"
+  },
+  {
+    "id": "q277",
+    "text": "The weak have no rights or choices. Their only fate is to be relentlessly crushed by the strong.",
+    "author": "Madara Uchiha"
+  },
+  {
+    "id": "q278",
+    "text": "It's abnormal for a shinobi to fear their own strength.",
+    "author": "Might Guy"
+  },
+  {
+    "id": "q279",
+    "text": "I am not who I was yesterday.",
+    "author": "proverb often referenced in shonen anime"
+  },
+  {
+    "id": "q280",
+    "text": "If you don't like your destiny, don't accept it.",
+    "author": "Naruto Uzumaki"
+  },
+  {
+    "id": "q281",
+    "text": "Life is not a game of luck. If you wanna win, work hard.",
+    "author": "Sora"
+  },
+  {
+    "id": "q282",
+    "text": "There is no growth without struggle.",
+    "author": "recurring shonen trope line"
+  },
+  {
+    "id": "q283",
+    "text": "I'm not a hero because I want your approval. I'm a hero because I chose to be.",
+    "author": "Izuku Midoriya"
+  },
+  {
+    "id": "q284",
+    "text": "Even if I am mocked for it, I am still proud to say I love my nakama.",
+    "author": "Monkey D. Luffy"
+  },
+  {
+    "id": "q285",
+    "text": "People die when they are killed.",
+    "author": "Shirou Emiya"
+  },
+  {
+    "id": "q286",
+    "text": "I am who I am because of the choices I made, not the fate that was written.",
+    "author": "recurring anime motif"
+  },
+  {
+    "id": "q287",
+    "text": "The strong prey on the weak — that's just the law of this world.",
+    "author": "Reiner Braun"
+  },
+  {
+    "id": "q288",
+    "text": "If you can't do something, then don't. Focus on what you can do.",
+    "author": "Levi Ackerman"
+  },
+  {
+    "id": "q289",
+    "text": "This world is merciless, and also very beautiful.",
+    "author": "Mikasa Ackerman"
+  },
+  {
+    "id": "q290",
+    "text": "I will surpass you, sensei.",
+    "author": "recurring rival trope"
+  },
+  {
+    "id": "q291",
+    "text": "I'm not going to run away, I never go back on my word! That's my nindo, my ninja way!",
+    "author": "Naruto Uzumaki"
+  },
+  {
+    "id": "q292",
+    "text": "A person grows up when he's able to overcome hardships.",
+    "author": "Tsunade"
+  },
+  {
+    "id": "q293",
+    "text": "Sometimes the questions are complicated and the answers are simple.",
+    "author": "anime paraphrase"
+  },
+  {
+    "id": "q294",
+    "text": "Whatever happens, happens.",
+    "author": "Spike Spiegel"
+  },
+  {
+    "id": "q295",
+    "text": "See you space cowboy...",
+    "author": "Spike Spiegel"
+  },
+  {
+    "id": "q296",
+    "text": "Money can't buy happiness, but it can buy the strength to keep going.",
+    "author": "recurring anime paraphrase"
+  },
+  {
+    "id": "q297",
+    "text": "I'll show you the power of a genius who works harder than anyone.",
+    "author": "Rock Lee"
+  },
+  {
+    "id": "q298",
+    "text": "One's true value is not decided by others.",
+    "author": "Ken Kaneki"
+  },
+  {
+    "id": "q299",
+    "text": "It's not you who decides your limits; it's me.",
+    "author": "Kakashi Hatake"
+  },
+  {
+    "id": "q300",
+    "text": "Even a small hope is enough to keep a person alive.",
+    "author": "Ken Kaneki"
+  },
+  {
+    "id": "q301",
+    "text": "The world isn't perfect, but it's there for us, doing the best it can.",
+    "author": "Roy Mustang"
+  },
+  {
+    "id": "q302",
+    "text": "You should enjoy the little detours to the fullest. Because that's where you'll find the things more important than what you want.",
+    "author": "Ging Freecss"
+  },
+  {
+    "id": "q303",
+    "text": "In our society, letting others find out that you're a nice guy is a very risky move.",
+    "author": "Kaiji Ito"
+  },
+  {
+    "id": "q304",
+    "text": "Fear is not evil. It tells you what your weakness is.",
+    "author": "Gildarts"
+  },
+  {
+    "id": "q305",
+    "text": "If you don't like your fate, don't accept it.",
+    "author": "Naruto Uzumaki"
+  },
+  {
+    "id": "q306",
+    "text": "A hunter's true value is measured by how they overcome adversity.",
+    "author": "Isaac Netero"
+  },
+  {
+    "id": "q307",
+    "text": "Whatever you lose, you'll find it again. But what you throw away you'll never get back.",
+    "author": "Kenshin Himura"
+  },
+  {
+    "id": "q308",
+    "text": "The moment you think of giving up, think of why you held on so long.",
+    "author": "Natsu Dragneel"
+  },
+  {
+    "id": "q309",
+    "text": "I want to become stronger for the ones I couldn't save.",
+    "author": "recurring shonen manga motif"
+  },
+  {
+    "id": "q310",
+    "text": "A king does not need power. All he needs is the belief that he's right.",
+    "author": "Vegapunk-style paraphrase"
+  },
+  {
+    "id": "q311",
+    "text": "Whether you win or lose, you learn something either way.",
+    "author": "recurring manga wisdom line"
+  },
+  {
+    "id": "q312",
+    "text": "The only thing we're allowed to do is believe we won't regret the choice we made.",
+    "author": "Levi Ackerman"
+  },
+  {
+    "id": "q313",
+    "text": "People's dreams never end.",
+    "author": "Marshall D. Teach"
+  },
+  {
+    "id": "q314",
+    "text": "It's not the face that makes someone a monster; it's the choices they make.",
+    "author": "Naruto Uzumaki"
+  },
+  {
+    "id": "q315",
+    "text": "In this world, there's nothing more relentless than time.",
+    "author": "Levi Ackerman"
+  },
+  {
+    "id": "q316",
+    "text": "I'll create a world where Ace's death wasn't in vain!",
+    "author": "Monkey D. Luffy"
+  },
+  {
+    "id": "q317",
+    "text": "As expected of me — nothing can beat my perfect strategy.",
+    "author": "recurring shonen protagonist trope"
+  },
+  {
+    "id": "q318",
+    "text": "Strength isn't just physical power — it's the will to protect something.",
+    "author": "recurring shonen wisdom line"
+  },
+  {
+    "id": "q319",
+    "text": "I don't want to be the guy who let his friends die because he was too weak.",
+    "author": "Izuku Midoriya"
+  },
+  {
+    "id": "q320",
+    "text": "The tears we shed today will become the strength of tomorrow.",
+    "author": "recurring manga/anime motif"
+  }
+]

@@ -5,9 +5,11 @@ import { useWallpapers } from "@/src/context/WallpapersContext";
 import { resolveImageUrl } from "@/src/utils/imageUrl";
 import { Ionicons } from "@expo/vector-icons";
 import Constants from "expo-constants";
+import { isQuoteNotificationEnabled, setQuoteNotificationEnabled } from "@/src/services/quoteNotifications";
 import { router } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
+  Alert,
   Image,
   ScrollView,
   StatusBar,
@@ -15,6 +17,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Switch,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -22,6 +25,7 @@ export default function Profile() {
   const { user, logout } = useAuth();
   const insets = useSafeAreaInsets();
   const { userWallpapers } = useWallpapers();
+  const [quoteNotificationEnabled, setQuoteNotificationEnabledState] = useState(false);
 
   const version = Constants.expoConfig?.version ?? "1.0.0";
 
@@ -30,6 +34,27 @@ export default function Profile() {
       router.replace("/(auth)/login");
     }
   }, [user]);
+
+  useEffect(() => {
+    isQuoteNotificationEnabled().then(setQuoteNotificationEnabledState).catch(() => setQuoteNotificationEnabledState(false));
+  }, []);
+
+  const handleQuoteNotificationChange = async (enabled: boolean) => {
+    if (enabled && Constants.executionEnvironment === "storeClient") {
+      Alert.alert(
+        "Development build required",
+        "Lock-screen quote notifications are unavailable in Expo Go. Install an Android development build to enable this feature.",
+      );
+      return;
+    }
+    setQuoteNotificationEnabledState(enabled);
+    try {
+      await setQuoteNotificationEnabled(enabled);
+    } catch (error) {
+      setQuoteNotificationEnabledState(false);
+      console.error("Quote notification setting failed:", error);
+    }
+  };
 
   const handleLogout = async () => {
     try {
@@ -172,12 +197,15 @@ export default function Profile() {
             <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.menuItem} activeOpacity={0.6}>
+          <TouchableOpacity style={styles.menuItem} activeOpacity={0.6} onPress={() => handleQuoteNotificationChange(!quoteNotificationEnabled)}>
             <View style={styles.menuItemLeft}>
-              <Ionicons name="settings-outline" size={22} color={Colors.textPrimary} />
-              <Text style={styles.menuItemText}>Settings</Text>
+              <Ionicons name="sparkles-outline" size={22} color={Colors.textPrimary} />
+              <View>
+                <Text style={styles.menuItemText}>Quote on lock screen</Text>
+                <Text style={styles.menuItemHint}>Show a rotating quote notification</Text>
+              </View>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Switch value={quoteNotificationEnabled} onValueChange={handleQuoteNotificationChange} trackColor={{ false: "#e2e8f0", true: Colors.accent }} thumbColor="#fff" />
           </TouchableOpacity>
 
           <TouchableOpacity 
@@ -462,6 +490,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "400",
     color: Colors.textPrimary,
+  },
+  menuItemHint: {
+    fontSize: 11,
+    color: Colors.textSecondary,
+    marginTop: 3,
   },
   logoutButton: {
     flexDirection: "row",
